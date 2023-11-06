@@ -1,0 +1,6 @@
+evaluate
+torch
+text2vec
+openai
+loguru
+tqdm
