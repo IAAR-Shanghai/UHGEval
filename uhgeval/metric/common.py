@@ -1,11 +1,13 @@
+# @Author : Shichao Song
+# @Email  : song.shichao@outlook.com
+
+
 from typing import Callable
 
 import evaluate  # Huggingface 包，可能需要代理以便网络访问正常
 import jieba
 from loguru import logger
 from text2vec import Similarity
-
-from utils.llm import Baichuan2_13B_Chat
 
 
 def catch_all_exceptions(func):
@@ -19,9 +21,13 @@ def catch_all_exceptions(func):
 
 
 @catch_all_exceptions
-def bleu4_score(continuation:str, reference:str, with_penalty=False):
+def bleu4_score(
+    continuation: str,
+    reference: str,
+    with_penalty = False
+) -> float:
     f = lambda text: list(jieba.cut(text))
-    bleu = evaluate.load('.cache/huggingface/bleu')
+    bleu = evaluate.load('uhgeval/.cache/huggingface/bleu')
     results = bleu.compute(predictions=[continuation], references=[[reference]], tokenizer=f)
     score = results['bleu']
     brevity_penalty = results['brevity_penalty']
@@ -32,19 +38,24 @@ def bleu4_score(continuation:str, reference:str, with_penalty=False):
 
 
 @catch_all_exceptions
-def rougeL_score(continuation:str, reference:str):
+def rougeL_score(
+    continuation: str,
+    reference: str
+) -> float:
     f = lambda text: list(jieba.cut(text))
-    rouge = evaluate.load('.cache/huggingface/rouge')
+    rouge = evaluate.load('uhgeval/.cache/huggingface/rouge')
     results = rouge.compute(predictions=[continuation], references=[[reference]], tokenizer=f, rouge_types=['rougeL'])
     score = results['rougeL']
     return score
 
 
 @catch_all_exceptions
-def kw_precision(continuation: str, reference: str, 
-        kw_extracter: Callable[[str], list[str]] = Baichuan2_13B_Chat().extract_kws,         # TODO: 最后调整该项
-        with_kw_list: bool = True
-        )-> float | tuple[float, list[str], list[str]]:
+def kw_precision(
+    continuation: str,
+    reference: str,
+    kw_extracter: Callable[[str], list[str]],
+    with_kw_list: bool = True
+) -> float | tuple[float, list[str], list[str]]:
     """使用model测度生成的续写sentence对原始新闻obj的合理性，分越高越合理"""
     kws = kw_extracter(continuation)
     if len(kws) == 0:
@@ -55,13 +66,19 @@ def kw_precision(continuation: str, reference: str,
 
 
 @catch_all_exceptions
-def bert_score(continuation: str, reference: str) -> float:
+def bert_score(
+    continuation: str,
+    reference: str
+) -> float:
     sim = Similarity()
     score = sim.get_score(continuation, reference)
     return score
 
 
-def classifications(predictions:list[bool], references:list[bool]) -> tuple[float, float, float, float]:
+def classifications(
+    predictions: list[bool],
+    references: list[bool]
+) -> tuple[float, float, float, float]:
     """二分类问题中计算accuracy, precision, recall 和 F1
     
     Args:

@@ -1,3 +1,7 @@
+# @Author : Shichao Song
+# @Email  : song.shichao@outlook.com
+
+
 import csv
 import json
 import os
@@ -7,10 +11,10 @@ from collections import defaultdict
 from loguru import logger
 
 
-def overalls(
-        output_dir: str = './output', 
-        target_path: str = './statistics/overalls.csv'
-    ) -> None:
+def save_overalls(
+    output_dir: str = './output', 
+    target_path: str = './statistics/overalls.csv'
+) -> None:
     """"""
 
     # Read all evaluation results saved at output_dir
@@ -45,11 +49,11 @@ def overalls(
     logger.info(f'All overalls saved at {target_path}')
 
 
-def overalls_radar(
-       overalls_path: str = './statistics/overalls.csv',
-       target_path: str = './statistics/radar.pdf',
-       llms: list[str] = [],
-    ) -> None:
+def save_overalls_radar(
+    overalls_path: str = './statistics/overalls.csv',
+    target_path: str = './statistics/radar.pdf',
+    llms: list[str] = [],
+) -> None:
     """"""
     def draw_radar(data: list[list], path: str) -> None:
         import matplotlib.pyplot as plt
@@ -105,12 +109,12 @@ def overalls_radar(
     logger.info(f'Radar graph saved at {target_path}')
 
 
-def overalls_by_type(
-        output_dir: str = './output', 
-        evaluator_name: str = 'SelectiveEvaluator',
-        metric_name: str = 'accuracy',
-        target_path: str = './statistics/overalls_by_type.csv'
-        ) -> None:
+def save_overalls_by_type(
+    output_dir: str = './output', 
+    evaluator_name: str = 'SelectiveEvaluator',
+    metric_name: str = 'accuracy',
+    target_path: str = './statistics/overalls_by_type.csv'
+) -> None:
     """"""
 
     results = []
@@ -138,9 +142,3 @@ def overalls_by_type(
     ])
 
     logger.info(f'Overalls by different types saved at {target_path}')
-
-
-if __name__ == '__main__':
-    overalls()
-    overalls_radar(llms=['Aquila_34B_Chat', 'Baichuan2_53B_Chat', 'InternLM_20B_Chat', 'Xinyu_70B_Chat', 'gpt-3.5-turbo', 'gpt-4-0613'])
-    overalls_by_type()

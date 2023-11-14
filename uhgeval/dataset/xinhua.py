@@ -1,28 +1,16 @@
+# @Author : Shichao Song
+# @Email  : song.shichao@outlook.com
+
+
 import json
 import os
 import random
-from abc import ABC, abstractmethod
 
 
-class Dataset(ABC):
-    @abstractmethod
-    def __init__(self, path):
-        ...
-
-    @abstractmethod
-    def __len__(self) -> int:
-        ...
-
-    @abstractmethod
-    def __getitem__(self, key: int | slice) -> dict | list[dict]:
-        ...
-
-    @abstractmethod
-    def load(self) -> list[dict]:
-        ...
+from uhgeval.dataset.base import BaseDataset
 
 
-class XinhuaHallucinations(Dataset):
+class XinhuaHallucinations(BaseDataset):
     def __init__(self, path: str, shuffle: bool = False, seed: int = 22):
         self.data = []
         if os.path.isfile(path):
