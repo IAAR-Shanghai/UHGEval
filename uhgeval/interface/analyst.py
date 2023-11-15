@@ -8,9 +8,6 @@ import os
 from collections import defaultdict
 
 
-from loguru import logger
-
-
 def save_overalls(
     output_dir: str = './output', 
     target_path: str = './statistics/overalls.csv'
@@ -46,7 +43,7 @@ def save_overalls(
         writer.writerow(row)
     csvfile.close()
 
-    logger.info(f'All overalls saved at {target_path}')
+    print(f'All overalls saved at {target_path}')
 
 
 def save_overalls_radar(
@@ -106,7 +103,7 @@ def save_overalls_radar(
     draw_radar(data, target_path)
     f.close()
 
-    logger.info(f'Radar graph saved at {target_path}')
+    print(f'Radar graph saved at {target_path}')
 
 
 def save_overalls_by_type(
@@ -141,4 +138,4 @@ def save_overalls_by_type(
         *results
     ])
 
-    logger.info(f'Overalls by different types saved at {target_path}')
+    print(f'Overalls by different types saved at {target_path}')
