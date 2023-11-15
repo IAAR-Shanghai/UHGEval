@@ -23,10 +23,11 @@ from uhgeval.llm.remote import (
 
 
 if __name__ == '__main__':
-    enable_logging = True
-    logger.remove()  # Remove original stderr logger
+    enable_log_saving = True
+    logger.remove()  # Remove all logger handlers including the stderr logger handler
     logger.add(sys.stderr, level=40)  # Update stderr logger
-    logger.add('logs/uhgeval_{time}.log', level=0) if enable_logging else ...
+    logger.add('logs/uhgeval_{time}.log', level=0) if enable_log_saving else ...
+    # TODO: Currently, loguru does not support log settings above when using the 'spawn' method in multiprocessing.
     
     dataset = XinhuaHallucinations('data/XinhuaHallucinations.json', shuffle=True, seed=22).load()
     llms = [
