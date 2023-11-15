@@ -1,3 +1,6 @@
+import sys
+from loguru import logger
+
 from uhgeval.dataset.xinhua import XinhuaHallucinations
 from uhgeval.evaluator.discriminative import (
     DiscriminativeEvaluatorKeywordLevel,
@@ -20,6 +23,11 @@ from uhgeval.llm.remote import (
 
 
 if __name__ == '__main__':
+    enable_logging = True
+    logger.remove()  # Remove original stderr logger
+    logger.add(sys.stderr, level=40)  # Update stderr logger
+    logger.add('logs/uhgeval_{time}.log', level=0) if enable_logging else ...
+    
     dataset = XinhuaHallucinations('data/XinhuaHallucinations.json', shuffle=True, seed=22).load()
     llms = [
         InternLM_20B_Chat(), 
