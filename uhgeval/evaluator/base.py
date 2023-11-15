@@ -2,6 +2,7 @@
 # @Email  : song.shichao@outlook.com, wyzh0912@126.com
 
 
+import copy
 import json
 import os
 from abc import ABC, abstractmethod
@@ -20,13 +21,21 @@ class BaseEvaluator(ABC):
             dataset(list[dict]): 幻觉评测数据集
             output_dir(str): 结果输出的目录，缓存也在这里，允许断点继续评测
         """
-        self.model = model
+        self.model = copy.deepcopy(model)
         self.dataset = dataset
 
         if not (os.path.exists(output_dir) and os.path.isdir(output_dir)):
             os.makedirs(output_dir)
         self.output_path = os.path.join(
             output_dir, f'{self.__class__.__name__}_{model.params["model_name"]}.json')
+
+    @abstractmethod
+    def set_model_params(self) -> None:
+        """Use unified parameters for the evaluation."""
+        params = {
+            # Subclass fill in the parameters here.
+        }
+        self.model.update_params(**params)
 
     @abstractmethod  # 由各个评测器子类实现
     def scoring(self, data_point:dict) -> dict:
@@ -108,6 +117,7 @@ class BaseEvaluator(ABC):
         """
         info = {'evaluator': self.__class__.__name__, 'llm': self.model.params['model_name']}
 
+        self.set_model_params()
         results = self.batch_scoring(self.dataset, sort, show_progress_bar, contain_original_data)
         valid_results = self.remove_invalid(results)
         splitted_valid_results = self.split_results_by_type(valid_results)

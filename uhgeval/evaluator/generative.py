@@ -12,6 +12,15 @@ from uhgeval.metric.common import (
 )
 
 class GenerativeEvaluator(BaseEvaluator):
+    def set_model_params(self) -> None:
+        params = {
+            'temperature': 0.1,
+            'max_new_tokens': 64,
+            'top_p': 0.9,
+            'top_k': 5,
+        }
+        self.model.update_params(**params)
+
     def scoring(self, data_point: dict) -> dict:
         continuation = self.model.continue_writing(data_point)
         precision, _, kws = kw_precision(continuation, data_point['newsRemainder'], self.model.extract_kws)

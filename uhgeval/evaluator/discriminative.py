@@ -10,6 +10,15 @@ from uhgeval.metric.common import classifications
 
 
 class DiscriminativeEvaluatorSentenceLevel(BaseEvaluator):
+    def set_model_params(self) -> None:
+        params = {
+            'temperature': 0.1,
+            'max_new_tokens': 24,
+            'top_p': 0.9,
+            'top_k': 5,
+        }
+        self.model.update_params(**params)
+
     def scoring(self, data_point: dict) -> dict:
         hallu = data_point['hallucinatedContinuation']
         unhallu = self._extract_first_sentence(data_point['newsRemainder'])
@@ -43,6 +52,15 @@ class DiscriminativeEvaluatorSentenceLevel(BaseEvaluator):
 
 
 class DiscriminativeEvaluatorKeywordLevel(BaseEvaluator):
+    def set_model_params(self) -> None:
+        params = {
+            'temperature': 0.1,
+            'max_new_tokens': 24,
+            'top_p': 0.9,
+            'top_k': 5,
+        }
+        self.model.update_params(**params)
+
     def scoring(self, data_point: dict) -> dict:
         """true和positive用来形容有幻觉的，因为这里是评测检查出幻觉的能力"""
         kws = list(data_point['allKeywords'].keys())
