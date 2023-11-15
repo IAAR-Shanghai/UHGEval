@@ -14,7 +14,16 @@ class SelectiveEvaluator(BaseEvaluator):
     def __init__(self, model: BaseLLM, dataset: list[dict], output_dir: str = './output', seed = 22):
         super().__init__(model, dataset, output_dir)
         random.seed(seed)
-    
+
+    def set_model_params(self) -> None:
+        params = {
+            'temperature': 0.1,
+            'max_new_tokens': 24,
+            'top_p': 0.9,
+            'top_k': 5,
+        }
+        self.model.update_params(**params)
+
     def scoring(self, data_point: dict) -> dict:
         swap = (random.random() > 0.5)
 

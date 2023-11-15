@@ -26,11 +26,12 @@ Run `experiment.py` to delve deeper into the project. You may encounter various 
 <summary>Click me to show all TODOs</summary>
 
 - [ ] requirements.txt: add version specifications
-- [ ] evaluator: add a function, `set_llm()`, to update the llm parameter
+- [x] evaluator: add a function, `set_llm()`, to update the llm parameter
 - [ ] translate: use English throughout
 - [ ] docs: update all documentation
 - [ ] llm, metric: enable loading from HuggingFace
 - [ ] running.log: enable log saving
 - [ ] evaluator: add `XinhuaHallucinationsEvaluator` class between the abstract class and concrete classes
+- [ ] evaluator: optimize the design of `BaseEvaluator`
 
 </details>

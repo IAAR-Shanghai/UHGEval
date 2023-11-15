@@ -4,15 +4,10 @@
 
 import multiprocessing as mp
 import time
+from itertools import product
 
 from uhgeval.llm.base import BaseLLM
 from uhgeval.evaluator.base import BaseEvaluator
-from uhgeval.evaluator.discriminative import (
-    DiscriminativeEvaluatorKeywordLevel,
-    DiscriminativeEvaluatorSentenceLevel
-)
-from uhgeval.evaluator.generative import GenerativeEvaluator
-from uhgeval.evaluator.selective import SelectiveEvaluator
 
 
 def experiment(
@@ -22,23 +17,27 @@ def experiment(
     processes: int = 3,
     seed: int = 22
 ) -> None:
+    """Run experiment with multiple language models and evaluators on a given dataset.
+
+    Args:
+        dataset (list[dict]): The input dataset as a list of dictionaries.
+        llms (list[BaseLLM]): List of large language models to evaluate.
+        evaluators (list[BaseEvaluator]): List of evaluators to use for each large language model.
+        processes (int, optional): Number of processes to use for parallel execution. Defaults to 3.
+        seed (int, optional): Seed for reproducibility. Defaults to 22.
+    """
     start = time.time()
     if processes > 1:
         p = mp.Pool(processes)
 
-    for llm in llms:
-        evaluators = [
-            SelectiveEvaluator(llm.update_params(inplace=False, temperature=0.1, max_new_tokens=24), dataset, seed=seed),
-            GenerativeEvaluator(llm.update_params(inplace=False, temperature=0.1, max_new_tokens=64), dataset),
-            DiscriminativeEvaluatorKeywordLevel(llm.update_params(inplace=False, temperature=0.1, max_new_tokens=24), dataset),
-            DiscriminativeEvaluatorSentenceLevel(llm.update_params(inplace=False, temperature=0.1, max_new_tokens=24), dataset),
-        ]
-        for evaluator in evaluators:
-            (
-                p.apply_async(func=evaluator.run, kwds={'show_progress_bar': True, 'contain_original_data': True})  # 仅当进程数大于 1 时，才进行多进程
-                if processes > 1 else
-                evaluator.run(show_progress_bar=True, contain_original_data=True)
-            )
+    for llm, evaluator in product(llms, evaluators):
+        instantiated_eval = evaluator(llm, dataset)
+        # TODO: Redesign the `BaseEvaluator` to ensure `SelectiveEvaluator` can receive `seed`
+
+        if processes > 1:
+            p.apply_async(func=instantiated_eval.run, kwds={'show_progress_bar': True, 'contain_original_data': True})
+        else:
+            instantiated_eval.run(show_progress_bar=True, contain_original_data=True)
 
     if processes > 1:
         p.close()
