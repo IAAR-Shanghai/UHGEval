@@ -30,11 +30,11 @@ class SelectiveEvaluator(BaseEvaluator):
         contn1 = data_point['hallucinatedContinuation']
         contn2 = self._extract_first_sentence(data_point['newsRemainder'])
         if swap:
-            contn1, contn2 = contn2, contn1  # 交换两个句子
+            contn1, contn2 = contn2, contn1  # Swap correct and incorrect sentences at random
         answer = self.model.compare_two_continuation(contn1, contn2, data_point)
         if swap:
-            contn1, contn2 = contn2, contn1  # 交换回两个句子
-            answer = -answer + 3  # 交换答案，1改为2，2改为1
+            contn1, contn2 = contn2, contn1  # Swap back the two sentences
+            answer = -answer + 3   # Swap back the answer, 1 becomes 2, and 2 becomes 1
         return {
             'metrics': {
                 'correct': answer == 2

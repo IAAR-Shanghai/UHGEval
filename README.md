@@ -28,11 +28,13 @@ Run `experiment.py` to delve deeper into the project. You may encounter various 
 
 - [x] requirements.txt: add version specifications
 - [x] evaluator: add a function, `set_llm()`, to update the llm parameter
-- [ ] translate: use English throughout
+- [x] translate: use English throughout
 - [ ] docs: update all documentation
 - [ ] llm, metric: enable loading from HuggingFace
 - [x] running.log: enable log saving
 - [ ] evaluator: add `XinhuaHallucinationsEvaluator` class between the abstract class and concrete classes
 - [ ] evaluator: optimize the design of `BaseEvaluator`
+- [ ] remote.py, gpt.py: Baichuan2_53B_Chat + GPT -> api.py
+- [ ] config: utilize conifg to realize convenient experiment
 
 </details>

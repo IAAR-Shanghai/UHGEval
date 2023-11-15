@@ -17,9 +17,9 @@ class BaseEvaluator(ABC):
     def __init__(self, model: BaseLLM, dataset: list[dict], output_dir: str = './output'):
         """
         Args:
-            model(LanguageModel): 待评测的大模型
-            dataset(list[dict]): 幻觉评测数据集
-            output_dir(str): 结果输出的目录，缓存也在这里，允许断点继续评测
+            model (BaseLLM): The large language model to be evaluated.
+            dataset (list[dict]): The dataset for evaluation.
+            output_dir (str): The directory for result output and caching.
         """
         self.model = copy.deepcopy(model)
         self.dataset = dataset
@@ -37,33 +37,40 @@ class BaseEvaluator(ABC):
         }
         self.model.update_params(**params)
 
-    @abstractmethod  # 由各个评测器子类实现
+    @abstractmethod
     def scoring(self, data_point:dict) -> dict:
-        """调用self.model进行data_point上的评测
+        """Invoke self.model to evaluate data_point.
 
         Returns:
-            dict: 一个结果字典，保存四个必选的字段，如下所示。
+            dict: A result dictionary containing three mandatory fields: `metrics`, `log`, `valid`.
         """
         return {
             'metrics': {
-                # 子类要记录的数值型结果，即各种指标的值，必选
+                # Numerical results to be recorded by subclasses, mandatory.
+                # Such as accuracy, recall, bleu, rouge, etc.
             },
             'log': {
-                # 子类要记录的字符型结果，即模型输出结果或数据点的上下文等，可选
+                # String results to be recorded by subclasses, optional.
+                # Such as model output.
             },
-            'valid': False  # 子类要记录的布尔型结果，指示该条评测是否有效，必选
+            'valid': ...
+                # Boolean result to be recorded by subclasses, indicating whether the evaluation is valid, mandatory.
+                # True or False.
         }
     
     def batch_scoring(self, dataset:list[dict], sort = True, show_progress_bar = False, contain_original_data = False) -> list[dict]:
-        """给定数据集，进行批量评分
+        """Perform batch scoring on the given dataset.
         
         Args:
-            dataset(list[dict]): 评测数据集
-            sort(bool): 是否对结果按照文件名排序
-            show_progress_bar(bool): 是否显示进度条
+            dataset (list[dict]): The dataset for evaluation.
+            sort (bool): Whether to sort the results by id.
+            show_progress_bar (bool): Whether to display a progress bar.
+        
+        Returns:
+            list[dict]: List of results.
         """
         
-        if os.path.exists(self.output_path):  # 实现断点继续评测功能
+        if os.path.exists(self.output_path):  # Resume evaluation
             results = self.read_output().get('results', [])
             results = self.remove_invalid(results)
             saved_ids = [result['id'] for result in results]
@@ -73,7 +80,7 @@ class BaseEvaluator(ABC):
 
         for data_point in (tqdm(dataset, desc=self.model.params['model_name']) if show_progress_bar else dataset):
             if data_point['id'] in saved_ids:
-                continue  # 跳过已经评测过且评测有效的文件
+                continue  # Skip results that have already been evaluated and are valid
             try:
                 result = {'id': data_point['id'], **self.scoring(data_point)}
                 if contain_original_data:
@@ -84,21 +91,22 @@ class BaseEvaluator(ABC):
             
         return sorted(results, key=lambda x: x['id']) if sort else results
     
-    @abstractmethod  # 由各个评测器子类实现
+    @abstractmethod
     def compute_overall(self, results: list[dict]) -> dict:
-        """用于从results当中提取单个数据点的结果，并进行归约，例如“求平均值”“求方差”“求召回率”
+        """Extract and aggregate results from individual data points in the results.
+        For example, calculate mean, variance, etc.
 
         Returns:
-            dict: 一个结果字典，可以保存任意数量任意形式的字段。
+            dict: A result dictionary that can store any number and form of fields.
         """
         return {
-            # '指标1': 值,
-            # '指标2': 值,
+            # 'Metric1': Value,
+            # 'Metric2': Value,
             # ...
         }
 
     def save_output(self, output: dict) -> None:
-        """保存评测结果"""
+        """Save evaluation results."""
         with open(self.output_path, 'w', encoding='utf-8') as f:
             json.dump(output, f, ensure_ascii=False, indent=4)
     
@@ -107,13 +115,15 @@ class BaseEvaluator(ABC):
             return json.load(f)
 
     def run(self, sort = True, show_progress_bar = False, contain_original_data = True) -> dict:
-        """运行一次完整的评测
-        Args:
-            sort(bool): 是否对保存文件中的结果进行按照文件名排序
-            show_progress_bar(bool): 是否显示进度条
-            contain_original_data(bool): 是否在结果中包含原始数据，以便调试
+        """Run a complete evaluation.
+
+        Args:            
+            sort (bool): Whether to sort the results by id.
+            show_progress_bar (bool): Whether to display a progress bar.
+            contain_original_data (bool): Whether to include original data in the results for debugging.
+
         Returns:
-            output 字典
+            dict: Output dictionary contains fields such as: info, overall, results, etc.
         """
         info = {'evaluator': self.__class__.__name__, 'llm': self.model.params['model_name']}
 
@@ -139,7 +149,7 @@ class BaseEvaluator(ABC):
 
     @staticmethod
     def split_results_by_type(results: list[dict]) -> dict[str, list[dict]]:
-        """将results按照type分为四份"""
+        """Split results into four types based on 'doc', 'gen', 'kno', and 'num'."""
         return {
             'doc': [result for result in results if 'doc' in result['id']],
             'gen': [result for result in results if 'gen' in result['id']],
@@ -149,5 +159,5 @@ class BaseEvaluator(ABC):
     
     @staticmethod
     def remove_invalid(results: list[dict]) -> list[dict]:
-        """将results中无效的去除掉并返回去除后的results"""
+        """Remove invalid results from the list and return the cleaned results."""
         return [result for result in results if result['valid']]
