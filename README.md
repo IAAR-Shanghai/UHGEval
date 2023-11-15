@@ -12,6 +12,7 @@ Features:
 
 Get started quickly with a 20-line demo program.
 
+* UHGEval requires Python>=3.10.0
 * `pip install -r requirements.txt`
 * Take `uhgeval/configs/example_config.py` as an example, create `uhgeval/configs/real_config.py` to configure the OpenAI GPT section.
 * Run `demo.py`
@@ -25,7 +26,7 @@ Run `experiment.py` to delve deeper into the project. You may encounter various 
 <details>
 <summary>Click me to show all TODOs</summary>
 
-- [ ] requirements.txt: add version specifications
+- [x] requirements.txt: add version specifications
 - [x] evaluator: add a function, `set_llm()`, to update the llm parameter
 - [ ] translate: use English throughout
 - [ ] docs: update all documentation
