@@ -55,8 +55,8 @@ def experiment_in_blocks(
     start_block: int = 0,
     seed: int = 22
 ) -> None:
-    if processes > 1:
-        mp.set_start_method('spawn')  # CUDA requires spawn method to launch multiple processes
+    if processes > 1 and mp.get_start_method() != 'spawn':
+        mp.set_start_method('spawn', force=True)  # CUDA requires spawn method to launch multiple processes
     start = time.time()
 
     total = len(dataset)
