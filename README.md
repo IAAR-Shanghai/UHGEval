@@ -1,10 +1,9 @@
 [English](./README.md) | [中文简体](./README.zh_CN.md)
 
-# UHGEval
+# 💡 UHGEval
 
 Benchmarking the Hallucination of Chinese Large Language Models via Unconstrained Generation
 
-Features:
 * Safety: Ensuring the security of experimental data is of utmost importance.
 * Flexibility: Easily expandable, with all modules replaceable.
 
@@ -19,7 +18,7 @@ Get started quickly with a 20-line demo program.
 
 ## Advanced Usage
 
-Run `experiment.py` to delve deeper into the project. You may encounter various issues during the trial run because the project is currently just a demo. For now, you can follow the interpreter's prompts to get the program running smoothly.
+Utilize run_uhgeval.py or run_uhgeval_future.py for a comprehensive understanding of this project. The former is currently a provisional piece of code slated for removal in the future; whereas the latter is command-line executable code intended for future use.
 
 ## TODOs
 
@@ -28,11 +27,13 @@ Run `experiment.py` to delve deeper into the project. You may encounter various 
 
 - [x] requirements.txt: add version specifications
 - [x] evaluator: add a function, `set_llm()`, to update the llm parameter
-- [ ] translate: use English throughout
+- [x] translate: use English throughout
 - [ ] docs: update all documentation
 - [ ] llm, metric: enable loading from HuggingFace
 - [x] running.log: enable log saving
 - [ ] evaluator: add `XinhuaHallucinationsEvaluator` class between the abstract class and concrete classes
 - [ ] evaluator: optimize the design of `BaseEvaluator`
+- [ ] remote.py, gpt.py: Baichuan2_53B_Chat + GPT -> api.py
+- [ ] config: utilize conifg to realize convenient experiment
 
 </details>
