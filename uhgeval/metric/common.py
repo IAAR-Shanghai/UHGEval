@@ -4,7 +4,7 @@
 
 from typing import Callable
 
-import evaluate  # Huggingface 包，可能需要代理以便网络访问正常
+import evaluate
 import jieba
 from loguru import logger
 from text2vec import Similarity
@@ -56,7 +56,7 @@ def kw_precision(
     kw_extracter: Callable[[str], list[str]],
     with_kw_list: bool = True
 ) -> float | tuple[float, list[str], list[str]]:
-    """使用model测度生成的续写sentence对原始新闻obj的合理性，分越高越合理"""
+    """Measure the rationality of a generated continuation sentence with respect to the original news object."""
     kws = kw_extracter(continuation)
     if len(kws) == 0:
         return 0, [], [] if with_kw_list else 0
@@ -79,11 +79,16 @@ def classifications(
     predictions: list[bool],
     references: list[bool]
 ) -> tuple[float, float, float, float]:
-    """二分类问题中计算accuracy, precision, recall 和 F1
-    
+    """
+    Calculate accuracy, precision, recall, and F1 in a binary classification problem.
+
     Args:
-        predictions(list[bool]): 预测值列表，零一列表
-        references(list[bool]): 真实值列表，零一列表
+        predictions (list[bool]): List of predicted values (0 or 1).
+        references (list[bool]): List of true values (0 or 1).
+
+    Returns:
+        tuple: Accuracy, precision, recall, and F1 scores.
+
     """
     true_positive = sum(1 for a, b in zip(references, predictions) if a == 1 and b == 1)
     false_positive = sum(1 for a, b in zip(references, predictions) if a == 0 and b == 1)

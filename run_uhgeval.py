@@ -1,3 +1,6 @@
+import sys
+from loguru import logger
+
 from uhgeval.dataset.xinhua import XinhuaHallucinations
 from uhgeval.evaluator.discriminative import (
     DiscriminativeEvaluatorKeywordLevel,
@@ -5,7 +8,9 @@ from uhgeval.evaluator.discriminative import (
 )
 from uhgeval.evaluator.generative import GenerativeEvaluator
 from uhgeval.evaluator.selective import SelectiveEvaluator
+from uhgeval.interface.analyst import save_overalls, save_overalls_by_type
 from uhgeval.interface.experiment import experiment_in_blocks
+from uhgeval.llm.gpt import GPT
 from uhgeval.llm.remote import (
     Aquila_34B_Chat,
     Baichuan2_13B_Chat,
@@ -20,10 +25,26 @@ from uhgeval.llm.remote import (
 
 
 if __name__ == '__main__':
-    dataset = XinhuaHallucinations('data/XinhuaHallucinations.json', shuffle=True, seed=22).load()
+    seed = 22
+    enable_log_saving = True
+    logger.remove()  # Remove all logger handlers including the stderr logger handler
+    logger.add(sys.stderr, level=40)  # Update stderr logger
+    logger.add('logs/uhgeval_{time}.log', level=0) if enable_log_saving else ...
+    # TODO: Currently, loguru does not support log settings above when using the 'spawn' method in multiprocessing.
+
+    dataset = XinhuaHallucinations('data/XinhuaHallucinations.json', shuffle=True, seed=seed).load()
     llms = [
-        InternLM_20B_Chat(), 
-        GPT_transit(model_name='gpt-3.5-turbo', report=True), 
+        GPT(model_name='gpt-3.5-turbo', report=True), 
+        GPT(model_name='gpt-4-0613', report=True), 
+        GPT(model_name='gpt-4-1106-preview', report=True), 
     ]
-    evaluators = [DiscriminativeEvaluatorKeywordLevel, DiscriminativeEvaluatorSentenceLevel, GenerativeEvaluator, SelectiveEvaluator]
-    experiment_in_blocks(dataset, llms, evaluators, 3, 1700, 0, 22)
+    evaluators = [
+        DiscriminativeEvaluatorKeywordLevel, 
+        DiscriminativeEvaluatorSentenceLevel, 
+        GenerativeEvaluator, 
+        SelectiveEvaluator
+    ]
+    
+    experiment_in_blocks(dataset, llms, evaluators, 3, 170, 0, seed)
+    save_overalls()
+    save_overalls_by_type()

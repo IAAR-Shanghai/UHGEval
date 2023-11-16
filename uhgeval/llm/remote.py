@@ -35,7 +35,6 @@ class Aquila_34B_Chat(BaseLLM):
         return res
 
     def continue_writing(self, obj: dict) -> str:
-        """续写"""
         return super()._continue_writing_without_instruction(self, obj)
 
 
@@ -105,7 +104,6 @@ class Baichuan2_53B_Chat(BaseLLM):
 
 
 class ChatGLM2_6B_Chat(BaseLLM):
-    """只适合简单的问答，续写效果不稳定，指令跟随效果极差"""
     def request(self, query) -> str:
         url = conf.ChatGLM2_url
         payload = json.dumps({
@@ -129,11 +127,9 @@ class ChatGLM2_6B_Chat(BaseLLM):
 
 
 class GPT_transit(BaseLLM):
-    """部署在中转服务器上的"""
     def __init__(self, model_name='gpt-3.5-turbo', temperature=1.0, max_new_tokens=1024, report=False):
         super().__init__(model_name, temperature, max_new_tokens)
         self.report = report
-        self.token_consumed = 0
 
     def request(self, query: str) -> str:
         url = conf.GPT_transit_url
@@ -152,8 +148,8 @@ class GPT_transit(BaseLLM):
         res = res.json()
         real_res = res["choices"][0]["message"]["content"]
 
-        self.token_consumed += res['usage']['total_tokens']
-        logger.info(f'GPT token consumed: {self.token_consumed}') if self.report else ()
+        token_consumed = res['usage']['total_tokens']
+        logger.info(f'GPT token consumed: {token_consumed}') if self.report else ()
         return real_res
 
 
@@ -203,12 +199,10 @@ class Qwen_14B_Chat(BaseLLM):
         return res
 
     def continue_writing(self, obj: dict) -> str:
-        """续写"""
         return super()._continue_writing_without_instruction(self, obj)
 
 
 class Xinyu_7B_Chat(BaseLLM):
-    """自研的仅用于新闻生产领域的大模型，续写稳定性高"""
     def request(self, query) -> str:
         url = conf.Xinyu_7B_url
         payload = json.dumps({
@@ -231,7 +225,6 @@ class Xinyu_7B_Chat(BaseLLM):
         return res
 
     def continue_writing(self, obj:dict) -> str:
-        """续写"""
         template = "Human: 【生成任务：文本续写】我要你担任新闻编辑。我将为您提供与新闻相关的故事或主题，您将续写一篇评论文章，对已有文本进行符合逻辑的续写。您应该利用自己的经验，深思熟虑地解释为什么某事很重要，用事实支持主张，并补充已有故事中可能缺少的逻辑段落。\n请对以下文本进行续写。\n {} Assistant:"
         query = template.format(f'《{obj["headLine"]}》\n{obj["broadcastDate"]}\n{obj["newsBeginning"]}')
         res = self.safe_request(query)
@@ -241,7 +234,6 @@ class Xinyu_7B_Chat(BaseLLM):
 
 
 class Xinyu_70B_Chat(BaseLLM):
-    """自研的仅用于新闻生产领域的大模型，续写稳定性高"""
     def request(self, query) -> str:
         url = conf.Xinyu_70B_url
         payload = json.dumps({
@@ -260,7 +252,6 @@ class Xinyu_70B_Chat(BaseLLM):
         return res
 
     def continue_writing(self, obj:dict) -> str:
-        """续写"""
         template = "Human: 【生成任务：文本续写】我要你担任新闻编辑。我将为您提供与新闻相关的故事或主题，您将续写一篇评论文章，对已有文本进行符合逻辑的续写。您应该利用自己的经验，深思熟虑地解释为什么某事很重要，用事实支持主张，并补充已有故事中可能缺少的逻辑段落。\n请对以下文本进行续写。\n {} Assistant:"
         query = template.format(f'《{obj["headLine"]}》\n{obj["broadcastDate"]}\n{obj["newsBeginning"]}')
         res = self.safe_request(query)
