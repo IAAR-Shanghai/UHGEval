@@ -7,7 +7,7 @@
 
 from uhgeval.dataset.xinhua import XinhuaHallucinations
 from uhgeval.evaluator.selective import SelectiveEvaluator
-from uhgeval.interface.analyst import save_overalls
+from uhgeval.core.analyst import save_overalls
 from uhgeval.llm.gpt import GPT
 
 
