@@ -7,6 +7,8 @@ Benchmarking the Hallucination of Chinese Large Language Models via Unconstraine
 * Safety: Ensuring the security of experimental data is of utmost importance.
 * Flexibility: Easily expandable, with all modules replaceable.
 
+![UHG Framework](./assets/eval_framework.png)
+
 ## Quick Start
 
 Get started quickly with a 20-line demo program.
@@ -37,3 +39,13 @@ Utilize run_uhgeval.py or run_uhgeval_future.py for a comprehensive understandin
 - [ ] config: utilize conifg to realize convenient experiment
 
 </details>
+
+## CITATION
+
+```BibTeX
+@article{UHGEval,
+  author = {Xun Liang and Shichao Song and Simin Niu and Zhiyu Li and Feiyu Xiong and Bo Tang and Zhaohui Wy and Dawei He and Peng Cheng and Zhonghao Wang and Haiying Deng},
+  title = {UHGEval: Benchmarking the Hallucination of Chinese Large Language Models via Unconstrained Generation},
+  year = {2023}
+}
+```

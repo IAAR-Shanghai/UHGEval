@@ -13,8 +13,8 @@ from uhgeval.evaluator.discriminative import (
 )
 from uhgeval.evaluator.generative import GenerativeEvaluator
 from uhgeval.evaluator.selective import SelectiveEvaluator
-from uhgeval.interface.analyst import save_overalls, save_overalls_by_type
-from uhgeval.interface.experiment import experiment_in_blocks
+from uhgeval.core.analyst import save_overalls, save_overalls_by_type
+from uhgeval.core.experiment import experiment_in_blocks
 from uhgeval.llm.gpt import GPT
 from uhgeval.llm.remote import (
     Aquila_34B_Chat,
