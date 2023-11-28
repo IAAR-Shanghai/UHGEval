@@ -70,6 +70,10 @@ def bert_score(
     continuation: str,
     reference: str
 ) -> float:
+    """
+    Note:
+        Requesting the network to connect to Hugging Face. 
+    """
     sim = Similarity()
     score = sim.get_score(continuation, reference)
     return score

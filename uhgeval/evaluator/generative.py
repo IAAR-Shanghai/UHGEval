@@ -15,7 +15,7 @@ class GenerativeEvaluator(BaseEvaluator):
     def set_model_params(self) -> None:
         params = {
             'temperature': 0.1,
-            'max_new_tokens': 64,
+            'max_new_tokens': 128,
             'top_p': 0.9,
             'top_k': 5,
         }
