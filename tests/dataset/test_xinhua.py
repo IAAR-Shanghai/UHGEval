@@ -11,7 +11,7 @@ class TestXinhuaHallucinations(unittest.TestCase):
 
     def setUp(self):
         # Path to the sample data file
-        self.dataset_path = "data/XinhuaHallucinations.json"
+        self.dataset_path = "data/Xinhua/XinhuaHallucinations.json"
 
     def test_init(self):
         dataset = XinhuaHallucinations(self.dataset_path)

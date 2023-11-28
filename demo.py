@@ -12,7 +12,7 @@ from uhgeval.llm.gpt import GPT
 
 
 llm = GPT(model_name='gpt-3.5-turbo', temperature=0.3, max_new_tokens=16)
-dataset = XinhuaHallucinations('data/XinhuaHallucinations.json', shuffle=True).load()
+dataset = XinhuaHallucinations('data/Xinhua/XinhuaHallucinations.json', shuffle=True).load()
 evaluator = SelectiveEvaluator(llm, dataset[:5])
 evaluator.run(show_progress_bar=True, contain_original_data=True)
 save_overalls()

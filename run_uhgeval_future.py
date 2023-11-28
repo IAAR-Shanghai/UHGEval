@@ -33,7 +33,7 @@ def parse_args(arguments: str = None):
     parser = argparse.ArgumentParser(description='UHGEval: Benchmarking the Hallucination of Chinese Large Language Models via Unconstrained Generation')
     parser.add_argument('--seed', dest='seed', type=int, default=22, help='Random seed')
     parser.add_argument('--enable-log-saving', dest='enable_log_saving', default=False, action='store_true', help='Enable log saving')
-    parser.add_argument('--dataset-path', dest='dataset_path', default='data/XinhuaHallucinations.json', help='Path to the dataset')
+    parser.add_argument('--dataset-path', dest='dataset_path', default='data/Xinhua/XinhuaHallucinations.json', help='Path to the dataset')
     parser.add_argument('--llms', dest='llms', nargs='+', default=['GPT'], help='List of LLMs to be evaluated')
     parser.add_argument('--evaluators', dest='evaluators', nargs='+', default=['DiscriminativeEvaluatorKeywordLevel', 'DiscriminativeEvaluatorSentenceLevel', 'GenerativeEvaluator', 'SelectiveEvaluator'], help='List of evaluators to use')
     parser.add_argument('--processes', dest='processes', type=int, default=3, help='Number of processes for the experiment')

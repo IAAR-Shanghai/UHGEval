@@ -32,7 +32,7 @@ if __name__ == '__main__':
     logger.add('logs/uhgeval_{time}.log', level=0) if enable_log_saving else ...
     # TODO: Currently, loguru does not support log settings above when using the 'spawn' method in multiprocessing.
 
-    dataset = XinhuaHallucinations('data/XinhuaHallucinations.json', shuffle=True, seed=seed).load()
+    dataset = XinhuaHallucinations('data/Xinhua/XinhuaHallucinations.json', shuffle=True, seed=seed).load()
     llms = [
         GPT(model_name='gpt-3.5-turbo', report=True), 
         GPT(model_name='gpt-4-0613', report=True), 
