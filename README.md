@@ -48,16 +48,10 @@ Although we have conducted thorough automatic annotation and manual verification
 <details>
 <summary>Click me to show all TODOs</summary>
 
-- [x] requirements.txt: add version specifications
-- [x] evaluator: add a function, `set_llm()`, to update the llm parameter
-- [x] translate: use English throughout
-- [ ] docs: update all documentation
 - [ ] llm, metric: enable loading from HuggingFace
-- [x] running.log: enable log saving
-- [ ] evaluator: add `XinhuaHallucinationsEvaluator` class between the abstract class and concrete classes
-- [ ] evaluator: optimize the design of `BaseEvaluator`
-- [ ] ❗remote.py, gpt.py: Baichuan2_53B_Chat + GPT -> api.py
-- [ ] ❗config: utilize conifg to realize convenient experiment
+- [ ] config: utilize conifg to realize convenient experiment
+- [ ] TruthfulQA: add new dataset and corresponding evaluators
+- [ ] another repo: creation pipeline of dataset
 
 </details>
 
