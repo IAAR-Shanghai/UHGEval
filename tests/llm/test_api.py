@@ -4,7 +4,27 @@
 
 import unittest
 
-from uhgeval.llm.gpt import GPT
+from uhgeval.llm.api import (
+    Baichuan2_53B_Chat,
+    GPT,
+)
+
+
+class TestBaichuan253BChat(unittest.TestCase):
+    def setUp(self):
+        self.model = Baichuan2_53B_Chat(temperature=0.1)
+
+    def test_request(self):
+        query = "How are you?"
+        response = self.model.request(query)
+        self.assertIsInstance(response, str)
+        self.assertGreater(len(response), 0)
+
+    def test_continue_writing(self):
+        obj = {"headLine": "Story", "broadcastDate": "2023-11-15", "newsBeginning": "Once upon a time, there is a"}
+        result = self.model.continue_writing(obj)
+        self.assertIsInstance(result, str)
+        self.assertGreater(len(result), 0)
 
 
 class TestGPT(unittest.TestCase):

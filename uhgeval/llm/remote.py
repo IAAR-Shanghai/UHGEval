@@ -61,48 +61,6 @@ class Baichuan2_13B_Chat(BaseLLM):
         return res
 
 
-class Baichuan2_53B_Chat(BaseLLM):
-    def request(self, query) -> str:
-        import time
-        url = conf.Baichuan2_53B_url
-        api_key = conf.Baichuan2_53B_api_key
-        secret_key = conf.Baichuan2_53B_secret_key
-        time_stamp = int(time.time())
-
-        json_data = json.dumps({
-            "model": "Baichuan2-53B",
-            "messages": [
-                {
-                    "role": "user",
-                    "content": query
-                }
-            ],
-            "parameters": {
-                "temperature": self.params['temperature'],
-                "top_p": self.params['top_p'],
-                "top_k": self.params['top_k'],
-            }
-        })
-        def _calculate_md5(input_string):
-            import hashlib
-            md5 = hashlib.md5()
-            md5.update(input_string.encode('utf-8'))
-            encrypted = md5.hexdigest()
-            return encrypted
-        signature = _calculate_md5(secret_key + json_data + str(time_stamp))
-        
-        headers = {
-            "Content-Type": "application/json",
-            "Authorization": "Bearer " + api_key,
-            "X-BC-Timestamp": str(time_stamp),
-            "X-BC-Signature": signature,
-            "X-BC-Sign-Algo": "MD5",
-        }
-        res = requests.post(url, data=json_data, headers=headers)
-        res = res.json()['data']['messages'][0]['content']
-        return res
-
-
 class ChatGLM2_6B_Chat(BaseLLM):
     def request(self, query) -> str:
         url = conf.ChatGLM2_url

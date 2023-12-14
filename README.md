@@ -48,10 +48,10 @@ Although we have conducted thorough automatic annotation and manual verification
 <details>
 <summary>Click me to show all TODOs</summary>
 
-- [ ] remote.py, gpt.py: Baichuan2_53B_Chat + GPT -> api.py
 - [ ] llm, metric: enable loading from HuggingFace
 - [ ] config: utilize conifg to realize convenient experiment
 - [ ] TruthfulQA: add new dataset and corresponding evaluators
+- [ ] another repo: creation pipeline of dataset
 
 </details>
 

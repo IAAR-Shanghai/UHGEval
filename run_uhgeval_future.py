@@ -15,11 +15,13 @@ from uhgeval.evaluator.generative import GenerativeEvaluator
 from uhgeval.evaluator.selective import SelectiveEvaluator
 from uhgeval.core.analyst import save_overalls, save_overalls_by_type
 from uhgeval.core.experiment import experiment_in_blocks
-from uhgeval.llm.gpt import GPT
+from uhgeval.llm.api import (
+    Baichuan2_53B_Chat,
+    GPT,
+)
 from uhgeval.llm.remote import (
     Aquila_34B_Chat,
     Baichuan2_13B_Chat,
-    Baichuan2_53B_Chat,
     ChatGLM2_6B_Chat,
     InternLM_20B_Chat,
     Xinyu_7B_Chat,

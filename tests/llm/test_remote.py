@@ -16,7 +16,6 @@ import unittest
 from uhgeval.llm.remote import (
     Aquila_34B_Chat,
     Baichuan2_13B_Chat,
-    Baichuan2_53B_Chat,
     ChatGLM2_6B_Chat,
     GPT_transit,
     InternLM_20B_Chat,
@@ -54,17 +53,6 @@ class TestAquila34BChat(BaseChatTest):
 class TestBaichuan213BChat(BaseChatTest):
     def setUp(self):
         self.model = Baichuan2_13B_Chat(temperature=0.1)
-
-    def test_request(self):
-        self._test_request()
-
-    def test_continue_writing(self):
-        self._test_continue_writing()
-
-
-class TestBaichuan253BChat(BaseChatTest):
-    def setUp(self):
-        self.model = Baichuan2_53B_Chat(temperature=0.1)
 
     def test_request(self):
         self._test_request()
