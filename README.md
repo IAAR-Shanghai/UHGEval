@@ -52,6 +52,7 @@ Although we have conducted thorough automatic annotation and manual verification
 - [ ] config: utilize conifg to realize convenient experiment
 - [ ] TruthfulQA: add new dataset and corresponding evaluators
 - [ ] another repo: creation pipeline of dataset
+- [ ] contribution: OpenCompass
 
 </details>
 
