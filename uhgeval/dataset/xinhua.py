@@ -14,7 +14,7 @@ class XinhuaHallucinations(BaseDataset):
     def __init__(self, path: str, shuffle: bool = False, seed: int = 22):
         self.data = []
         if os.path.isfile(path):
-            with open(path) as f:
+            with open(path, encoding='utf-8') as f:
                 self.data = json.load(f)
         if shuffle:
             random.seed(seed)

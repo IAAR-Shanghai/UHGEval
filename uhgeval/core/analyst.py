@@ -18,7 +18,7 @@ def save_overalls(
     overalls = defaultdict(lambda: defaultdict(dict))
     outputs = sorted(os.listdir(output_dir))
     for output in outputs:
-        with open(os.path.join(output_dir, output)) as f:
+        with open(os.path.join(output_dir, output), encoding='utf-8') as f:
             obj = json.load(f)
             llm, evaluator = obj['info']['llm'], obj['info']['evaluator']
             overalls[llm][evaluator] = obj['overall']
