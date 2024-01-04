@@ -163,7 +163,7 @@ class BaseLLM(ABC):
     def _read_prompt_template(filename: str) -> str:
         path = os.path.join('uhgeval/prompts/', filename)
         if os.path.exists(path):
-            with open(path) as f:
+            with open(path, encoding='utf-8') as f:
                 return f.read()
         else:
             logger.error(f'Prompt template not found at {path}')

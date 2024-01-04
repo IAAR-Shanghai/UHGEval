@@ -111,7 +111,7 @@ class BaseEvaluator(ABC):
             json.dump(output, f, ensure_ascii=False, indent=4)
     
     def read_output(self) -> dict:
-        with open(self.output_path) as f:
+        with open(self.output_path, encoding='utf-8') as f:
             return json.load(f)
 
     def run(self, sort = True, show_progress_bar = False, contain_original_data = True) -> dict:
