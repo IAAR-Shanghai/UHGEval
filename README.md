@@ -16,8 +16,8 @@
 - [Customization Guideline](#customization-guideline)
 - [Results for Experiment-20231117](#results-for-experiment-20231117)
 - [Contributions](#contributions)
-  * [TODOs](#todos)
-  * [CITATION](#citation)
+- [TODOs](#todos)
+- [CITATION](#citation)
 
 # 🍄 Introduction
 
@@ -79,7 +79,7 @@ The original experimental results are in [./archived_experiments/20231117](./arc
 
 Although we have conducted thorough automatic annotation and manual verification, there may still be errors or imperfections in our [XinhuaHallucinations](./data/Xinhua/XinhuaHallucinations.json) dataset with over 5000 data points. We encourage you to raise issues or submit pull requests to assist us in improving the consistency of the dataset. You may also receive corresponding recognition and rewards for your contributions.
 
-## TODOs
+# TODOs
 
 <details>
 <summary>Click me to show all TODOs</summary>
@@ -92,7 +92,7 @@ Although we have conducted thorough automatic annotation and manual verification
 
 </details>
 
-## CITATION
+# CITATION
 
 ```BibTeX
 @article{UHGEval,
