@@ -10,7 +10,7 @@
 # Contents
 - [Introduction](#introduction)
 - [Project Structure](#project-structure)
-  * [uhgeval](#uhgeval)
+  * [UHGEval](#uhgeval)
 - [Quick Start](#quick-start)
 - [Advanced Usage](#advanced-usage)
 - [Customization Guideline](#customization-guideline)
@@ -37,7 +37,7 @@ The project contains multiple folders and multiple Python script files. Here are
 * **statistics**: This folder is used to store summary results of **multiple experiments**. 
 * **tests**: This folder includes scripts to run **unit testing**. 
 * **uhgeval**: This folder contains the core components of this project. We provide a more detailed introduction below.
-## uhgeval
+## UHGEval
 The files contained in this folder ensure that the project runs properly. Here we will explain their respective roles.
 * **configs**: This folder comprises scripts used to **initialize** the **loading parameters** of the model. There are lots of strings in this script. The string can be an API, a URL, or a local path, depending on your way of loading.
 * **dataset**: This folder contains scripts used to **load the dataset**. Currently, it only includes the script for loading the XinhuaHallucinations dataset. You can add your own loading script here. 
