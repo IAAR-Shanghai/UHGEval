@@ -1,5 +1,6 @@
-# @Author : Shichao Song, YeZhaohui Wang
+# @Author : Shichao Song, Zhaohui Wangye
 # @Email  : song.shichao@outlook.com, wyzh0912@126.com
+
 
 
 import copy
@@ -13,10 +14,10 @@ from loguru import logger
 
 class BaseLLM(ABC):
     def __init__(
-            self,
-            model_name: str = None,
-            temperature: float = 1.0,
-            max_new_tokens: int = 1024,
+            self, 
+            model_name: str = None, 
+            temperature: float = 1.0, 
+            max_new_tokens: int = 1024, 
             top_p: float = 0.9,
             top_k: int = 5,
             **more_params
@@ -77,8 +78,8 @@ class BaseLLM(ABC):
         res = self.safe_request(query)
         kws = res.split('<keywords>')[-1].split('</keywords>')[0].split('\n')
         filtered = [
-            s.strip()
-            for s in kws
+            s.strip() 
+            for s in kws 
             if s.strip() and s.strip() in sentence
         ]
         return filtered
@@ -91,7 +92,7 @@ class BaseLLM(ABC):
                 If with_reason is True, return a tuple with the reason.
         """
 
-        template = self._read_prompt_template('is_kw_hallucinated.txt')
+        template = self._read_prompt_template('is_kw_hallucinated.txt')        
         query = template.format(
             headLine=obj['headLine'],
             broadcastDate=obj['broadcastDate'],
@@ -160,6 +161,7 @@ class BaseLLM(ABC):
             answer = -1
         return (answer, real_res.split('。')[0]) if with_reason else answer
 
+
     def answer_MC1(self, obj: dict) -> int:
         """Answer a multiple choice question which has only one correct choice.
 
@@ -225,9 +227,7 @@ class BaseLLM(ABC):
         """
         query = obj['Question']
         res = self.safe_request(query)
-        print("yes")
         return res
-
     @staticmethod
     def _read_prompt_template(filename: str) -> str:
         path = os.path.join('uhgeval/prompts/', filename)
