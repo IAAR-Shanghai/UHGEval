@@ -1,4 +1,4 @@
-# @Author : Shichao Song, YeZhaohui Wang
+# @Author : Shichao Song, Zhaohui Wangye
 # @Email  : song.shichao@outlook.com, wyzh0912@126.com
 
 
@@ -14,8 +14,7 @@ from uhgeval.llm.base import BaseLLM
 
 
 class BaseEvaluator(ABC):
-    def __init__(self, model: BaseLLM,
-                 dataset: list[dict], output_dir: str = './output'):
+    def __init__(self, model: BaseLLM, dataset: list[dict], output_dir: str = './output'):
         """
         Args:
             model (BaseLLM): The large language model to be evaluated.
@@ -59,8 +58,8 @@ class BaseEvaluator(ABC):
             # True or False.
         }
 
-    def batch_scoring(self, dataset: list[dict], sort=True,
-                      show_progress_bar=False, contain_original_data=False) -> list[dict]:
+    def batch_scoring(self, dataset: list[dict], sort=True, show_progress_bar=False, contain_original_data=False) -> \
+    list[dict]:
         """Perform batch scoring on the given dataset.
 
         Args:
@@ -80,8 +79,7 @@ class BaseEvaluator(ABC):
             results = []
             saved_ids = []
 
-        for data_point in (tqdm(
-                dataset, desc=self.model.params['model_name']) if show_progress_bar else dataset):
+        for data_point in (tqdm(dataset, desc=self.model.params['model_name']) if show_progress_bar else dataset):
             if data_point['id'] in saved_ids:
                 continue  # Skip results that have already been evaluated and are valid
             try:
@@ -117,8 +115,7 @@ class BaseEvaluator(ABC):
         with open(self.output_path, encoding='utf-8') as f:
             return json.load(f)
 
-    def run(self, sort=True, show_progress_bar=False,
-            contain_original_data=True) -> dict:
+    def run(self, sort=True, show_progress_bar=False, contain_original_data=True) -> dict:
         """Run a complete evaluation.
 
         Args:
@@ -129,48 +126,37 @@ class BaseEvaluator(ABC):
         Returns:
             dict: Output dictionary contains fields such as: info, overall, results, etc.
         """
-        info = {'evaluator': self.__class__.__name__,
-                'llm': self.model.params['model_name']}
+        info = {'evaluator': self.__class__.__name__, 'llm': self.model.params['model_name']}
 
         self.set_model_params()
-        results = self.batch_scoring(
-            self.dataset,
-            sort,
-            show_progress_bar,
-            contain_original_data)
+        results = self.batch_scoring(self.dataset, sort, show_progress_bar, contain_original_data)
         valid_results = self.remove_invalid(results)
-      #  splitted_valid_results = self.split_results_by_type(valid_results)
+        splitted_valid_results = self.split_results_by_type(valid_results)
 
         try:
-            overall = self.compute_overall(
-                valid_results) if len(valid_results) > 0 else {}
-            # overall_by_type = {
-            #     'overall-' + type_: (self.compute_overall(sub_valid_results) if len(sub_valid_results) > 0 else {})
-            #     for type_, sub_valid_results in splitted_valid_results.items()
-            # }
+            overall = self.compute_overall(valid_results) if len(valid_results) > 0 else {}
+            overall_by_type = {
+                'overall-' + type_: (self.compute_overall(sub_valid_results) if len(sub_valid_results) > 0 else {})
+                for type_, sub_valid_results in splitted_valid_results.items()
+            }
         except Exception as e:
             logger.warning(repr(e))
             overall = dict()
-            # overall_by_type = dict()
+            overall_by_type = dict()
 
-        self.save_output(
-            output := {
-                'info': info,
-                'overall': overall,
-                # **overall_by_type,
-                'results': results})
+        self.save_output(output := {'info': info, 'overall': overall, **overall_by_type, 'results': results})
         print(f'Output saved at {self.output_path}!')
         return output
 
     @staticmethod
-    # def split_results_by_type(results: list[dict]) -> dict[str, list[dict]]:
-    #     """Split results into four types based on 'doc', 'gen', 'kno', and 'num'."""
-    #     return {
-    #         'doc': [result for result in results if 'doc' in result['id']],
-    #         'gen': [result for result in results if 'gen' in result['id']],
-    #         'kno': [result for result in results if 'kno' in result['id']],
-    #         'num': [result for result in results if 'num' in result['id']],
-    #     }
+    def split_results_by_type(results: list[dict]) -> dict[str, list[dict]]:
+        """Split results into four types based on 'doc', 'gen', 'kno', and 'num'."""
+        return {
+            'doc': [result for result in results if 'doc' in result['id']],
+            'gen': [result for result in results if 'gen' in result['id']],
+            'kno': [result for result in results if 'kno' in result['id']],
+            'num': [result for result in results if 'num' in result['id']],
+        }
 
     @staticmethod
     def remove_invalid(results: list[dict]) -> list[dict]:

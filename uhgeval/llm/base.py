@@ -2,10 +2,10 @@
 # @Email  : song.shichao@outlook.com, wyzh0912@126.com
 
 
-
+import copy
 import os
-import random
 import re
+import random
 from abc import ABC, abstractmethod
 
 from loguru import logger
@@ -13,14 +13,14 @@ from loguru import logger
 
 class BaseLLM(ABC):
     def __init__(
-        self,
-        model_name: str = None,
-        temperature: float = 1.0,
-        max_new_tokens: int = 1024,
-        top_p: float = 0.9,
-        top_k: int = 5,
-        **more_params
-    ):
+            self,
+            model_name: str = None,
+            temperature: float = 1.0,
+            max_new_tokens: int = 1024,
+            top_p: float = 0.9,
+            top_k: int = 5,
+            **more_params
+        ):
         self.params = {
             'model_name': model_name if model_name else self.__class__.__name__,
             'temperature': temperature,
@@ -40,7 +40,7 @@ class BaseLLM(ABC):
             return new_obj
 
     @abstractmethod
-    def request(self, query: str) -> str:
+    def request(self, query:str) -> str:
         return ''
 
     def safe_request(self, query: str) -> str:
@@ -52,28 +52,26 @@ class BaseLLM(ABC):
             response = ''
         return response
 
-    def continue_writing(self, obj: dict) -> str:
+    def continue_writing(self, obj:dict) -> str:
         template = self._read_prompt_template('continue_writing.txt')
-        query = template.format(
-            f'《{obj["headLine"]}》\n{obj["broadcastDate"][:10]}\n{obj["newsBeginning"]}')
+        query = template.format(f'《{obj["headLine"]}》\n{obj["broadcastDate"][:10]}\n{obj["newsBeginning"]}')
         res = self.safe_request(query)
         real_res = res.split('<response>')[-1].split('</response>')[0]
         sentences = re.split(r'(?<=[。；？！])', real_res)
         return sentences[0]
 
     @staticmethod
-    def _continue_writing_without_instruction(self, obj: dict) -> str:
+    def _continue_writing_without_instruction(self, obj:dict) -> str:
         """Generate a continuation without prompt engineering."""
         template = "{}"
-        query = template.format(
-            f'《{obj["headLine"]}》\n{obj["broadcastDate"]}\n{obj["newsBeginning"]}')
+        query = template.format(f'《{obj["headLine"]}》\n{obj["broadcastDate"]}\n{obj["newsBeginning"]}')
         res = self.safe_request(query)
         real_res = res.split(query)[-1] if query in res else res
         real_res = real_res.replace('<s>', '').replace('</s>', '').strip()
         sentences = re.split(r'(?<=[。；？！])', real_res)
         return sentences[0]
 
-    def extract_kws(self, sentence: str) -> list[str]:
+    def extract_kws(self, sentence:str) -> list[str]:
         template = self._read_prompt_template('extract_kws.txt')
         query = template.format(sentence)
         res = self.safe_request(query)
@@ -85,8 +83,7 @@ class BaseLLM(ABC):
         ]
         return filtered
 
-    def is_kw_hallucinated(self, kw: str, obj: dict,
-                           with_reason: bool = False) -> int | tuple[int, str]:
+    def is_kw_hallucinated(self, kw:str, obj:dict, with_reason: bool = False) -> int | tuple[int, str]:
         """Determine if a keyword exists as a hallucination.
 
         Returns:
@@ -112,8 +109,7 @@ class BaseLLM(ABC):
             answer = -1
         return (answer, real_res.split('。')[0]) if with_reason else answer
 
-    def compare_two_continuation(
-            self, contn1: str, contn2: str, obj: dict) -> int:
+    def compare_two_continuation(self, contn1: str, contn2: str, obj: dict) -> int:
         """Compare two continuations and determine which one is better.
 
         Returns:
@@ -122,11 +118,11 @@ class BaseLLM(ABC):
 
         template = self._read_prompt_template('compare_two_continuation.txt')
         query = template.format(
-            headLine=obj['headLine'],
-            broadcastDate=obj['broadcastDate'],
-            newsBeginning=obj['newsBeginning'],
-            contn1=contn1,
-            contn2=contn2,
+            headLine = obj['headLine'],
+            broadcastDate = obj['broadcastDate'],
+            newsBeginning = obj['newsBeginning'],
+            contn1 = contn1,
+            contn2 = contn2,
         )
         res = self.safe_request(query)
         real_res = res.split(query)[-1]  # Remove repetition
@@ -139,8 +135,7 @@ class BaseLLM(ABC):
             answer = -1
         return answer
 
-    def is_continuation_hallucinated(
-            self, continuation: str, obj: dict, with_reason: bool = False) -> int | tuple[int, str]:
+    def is_continuation_hallucinated(self, continuation:str, obj:dict, with_reason: bool = False) -> int | tuple[int, str]:
         """Determine if a continuation contains hallucination.
 
         Returns:
@@ -148,13 +143,12 @@ class BaseLLM(ABC):
                 If with_reason is True, return a tuple with the reason.
         """
 
-        template = self._read_prompt_template(
-            'is_continuation_hallucinated.txt')
+        template = self._read_prompt_template('is_continuation_hallucinated.txt')
         query = template.format(
-            headLine=obj['headLine'],
-            broadcastDate=obj['broadcastDate'],
-            newsBeginning=obj['newsBeginning'],
-            continuation=continuation
+            headLine = obj['headLine'],
+            broadcastDate = obj['broadcastDate'],
+            newsBeginning = obj['newsBeginning'],
+            continuation = continuation
         )
         res = self.safe_request(query)
         real_res = res.split(query)[-1]  # Remove repetition
@@ -231,6 +225,7 @@ class BaseLLM(ABC):
         """
         query = obj['Question']
         res = self.safe_request(query)
+        print("yes")
         return res
 
     @staticmethod
