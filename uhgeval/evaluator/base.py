@@ -130,32 +130,37 @@ class BaseEvaluator(ABC):
         self.set_model_params()
         results = self.batch_scoring(self.dataset, sort, show_progress_bar, contain_original_data)
         valid_results = self.remove_invalid(results)
-        splitted_valid_results = self.split_results_by_type(valid_results)
+        # splitted_valid_results = self.split_results_by_type(valid_results)
 
         try:
             overall = self.compute_overall(valid_results) if len(valid_results) > 0 else {}
-            overall_by_type = {
-                'overall-'+ type_: (self.compute_overall(sub_valid_results) if len(sub_valid_results) > 0 else {})
-                for type_, sub_valid_results in splitted_valid_results.items()
-            }
+            # overall_by_type = {
+            #     'overall-'+ type_: (self.compute_overall(sub_valid_results) if len(sub_valid_results) > 0 else {})
+            #     for type_, sub_valid_results in splitted_valid_results.items()
+            # }
         except Exception as e:
             logger.warning(repr(e))
             overall = dict()
-            overall_by_type = dict()
+            # overall_by_type = dict()
 
-        self.save_output(output:={'info': info, 'overall': overall, **overall_by_type, 'results': results})
+        self.save_output(
+            output := {
+                'info': info,
+                'overall': overall,
+                # **overall_by_type,
+                'results': results})
         print(f'Output saved at {self.output_path}!')
         return output
 
     @staticmethod
-    def split_results_by_type(results: list[dict]) -> dict[str, list[dict]]:
-        """Split results into four types based on 'doc', 'gen', 'kno', and 'num'."""
-        return {
-            'doc': [result for result in results if 'doc' in result['id']],
-            'gen': [result for result in results if 'gen' in result['id']],
-            'kno': [result for result in results if 'kno' in result['id']],
-            'num': [result for result in results if 'num' in result['id']],
-        }
+    # def split_results_by_type(results: list[dict]) -> dict[str, list[dict]]:
+    #     """Split results into four types based on 'doc', 'gen', 'kno', and 'num'."""
+    #     return {
+    #         'doc': [result for result in results if 'doc' in result['id']],
+    #         'gen': [result for result in results if 'gen' in result['id']],
+    #         'kno': [result for result in results if 'kno' in result['id']],
+    #         'num': [result for result in results if 'num' in result['id']],
+    #     }
     
     @staticmethod
     def remove_invalid(results: list[dict]) -> list[dict]:
