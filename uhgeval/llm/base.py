@@ -227,7 +227,6 @@ class BaseLLM(ABC):
         """
         query = obj['Question']
         res = self.safe_request(query)
-        print("yes")
         return res
     @staticmethod
     def _read_prompt_template(filename: str) -> str:
