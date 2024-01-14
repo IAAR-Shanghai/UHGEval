@@ -4,10 +4,8 @@
 
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
-from transformers.generation import GenerationConfig
 from uhgeval.configs import real_config as conf
 from uhgeval.llm.base import BaseLLM
-from transformers import BitsAndBytesConfig
 
 
 class Aquila_34B_Chat(BaseLLM):
