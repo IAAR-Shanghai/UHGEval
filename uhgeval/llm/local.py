@@ -54,8 +54,6 @@ class Baichuan2_13B_Chat(BaseLLM):
         output = model.generate(input_ids, **gen_kwargs)[0]
         response = tokenizer.decode(
             output[len(input_ids[0]) - len(output):], skip_special_tokens=True)
-        print(response)
-        print('\n')
         return response
 
 
@@ -77,7 +75,6 @@ class ChatGLM3_6B_Chat(BaseLLM):
         output = model.generate(input_ids, **gen_kwargs)[0]
         response = tokenizer.decode(
             output[len(input_ids[0]) - len(output):], skip_special_tokens=True)
-        print(response)
         return response
 
 
@@ -99,7 +96,6 @@ class Qwen_14B_Chat(BaseLLM):
         output = model.generate(input_ids, **gen_kwargs)[0]
         response = tokenizer.decode(
             output[len(input_ids[0]) - len(output):], skip_special_tokens=True)
-        print(response)
         return response
 
 
@@ -121,5 +117,4 @@ class InternLM_20B_Chat(BaseLLM):
         output = model.generate(input_ids, **gen_kwargs)[0]
         response = tokenizer.decode(
             output[len(input_ids[0]) - len(output):], skip_special_tokens=True)
-        print(response)
         return response
