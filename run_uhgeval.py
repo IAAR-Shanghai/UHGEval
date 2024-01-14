@@ -4,7 +4,7 @@ import sys
 from loguru import logger
 from uhgeval.core.analyst import save_overalls, save_overalls_by_type
 from uhgeval.core.experiment import experiment_in_blocks
-from uhgeval.core.load_conf import load_yaml_conf
+from uhgeval.core.experiment import load_yaml_conf
 
 if __name__ == '__main__':
     seed = 22
@@ -20,6 +20,7 @@ if __name__ == '__main__':
     datasets_configs = experiment_conf.get('dataset')
     evaluated_dataset_list = []
     evaluator_list = []
+
     # Load dataset configs
     for dataset_dict in datasets_configs:
         dataset_name = list(dataset_dict.keys())[0]
@@ -28,6 +29,7 @@ if __name__ == '__main__':
         dataset_module_name = f"uhgeval.dataset.{temp_name[0]}"
         dataset_module = importlib.import_module(dataset_module_name)
         dataset_class = getattr(dataset_module, temp_name[1])
+
         # Load evaluator configs
         for evaluator_config in parameters['evaluator']:
             temp_list = evaluator_config.split('.')
@@ -37,6 +39,7 @@ if __name__ == '__main__':
             # Instantiate the corresponding class and add it to the evaluator list.
             evaluator_list.append(evaluator_class)
         parameters.pop('evaluator')
+
         # Instantiate the corresponding class and add it to the dataset list.
         if parameters is not None:
             evaluated_dataset_list.append(dataset_class(**parameters))
@@ -57,6 +60,7 @@ if __name__ == '__main__':
             llm_module_name = f"uhgeval.llm.{llm_type}"
             llm_module = importlib.import_module(llm_module_name)
             llm_class = getattr(llm_module, llm_name)
+
             # Instantiate the corresponding class and add it to the llm list.
             if parameters is not None:
                 evaluated_llm_list.append(llm_class(**parameters))
