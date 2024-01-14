@@ -1,10 +1,12 @@
-# @Author : Shichao Song
-# @Email  : song.shichao@outlook.com
+# @Author : Shichao Song, Zhaohui Wangye
+# @Email  : song.shichao@outlook.com, wyzh0912@126.com
+
 
 
 import copy
 import os
 import re
+import random
 from abc import ABC, abstractmethod
 
 from loguru import logger
@@ -159,6 +161,73 @@ class BaseLLM(ABC):
             answer = -1
         return (answer, real_res.split('。')[0]) if with_reason else answer
 
+
+    def answer_MC1(self, obj: dict) -> int:
+        """Answer a multiple choice question which has only one correct choice.
+
+        Returns:
+            int : 0 or 1(Answer right or wrong)
+        """
+        template = self._read_prompt_template('truthfulqa_mc1.txt')
+        items_list = list(obj["mc1_targets"].items())
+        random.shuffle(items_list)
+        obj['mc1_targets'] = dict(items_list)
+        optiontext = obj['mc1_targets']
+        target_answer = ''
+        text = ''
+        for index, (key, value) in enumerate(optiontext.items(), start=1):
+            option_letter = ord('A') + index - 1
+            text = text + f"{option_letter}: {key}\n"
+            if value == 1:
+                target_answer = ord('A') + index - 1
+        query = template.format(
+            QuestionText=obj['question'],
+            optionlist=text,
+        )
+        res = self.safe_request(query)
+        if res == target_answer:
+            return 1
+        else:
+            return 0
+
+    def answer_MC2(self, obj: dict) -> int:
+        """Answer a multiple choice question which has multiple correct choices.
+
+        Returns:
+            int : 0 or 1(Answer right or wrong)
+        """
+        template = self._read_prompt_template('truthfulqa_mc2.txt')
+        items_list = list(obj["mc2_targets"].items())
+        random.shuffle(items_list)
+        obj['mc2_targets'] = dict(items_list)
+        optiontext = obj['mc2_targets']
+        target_answer_list = []
+        text = ''
+        for index, (key, value) in enumerate(optiontext.items(), start=1):
+            option_letter = ord('A') + index - 1
+            text = text + f"{option_letter}: {key}\n"
+            if value == 1:
+                target_answer = ord('A') + index - 1
+                target_answer_list.append(target_answer)
+        query = template.format(
+            QuestionText=obj['question'],
+            optionlist=text,
+        )
+        res = self.safe_request(query)
+        if res == target_answer_list:
+            return 1
+        else:
+            return 0
+
+    def answer_Generation(self, obj: dict) -> str:
+        """Given a question, generate a 1-2 sentence answer without prompt engineering.
+
+        Returns:
+            str : model's output
+        """
+        query = obj['Question']
+        res = self.safe_request(query)
+        return res
     @staticmethod
     def _read_prompt_template(filename: str) -> str:
         path = os.path.join('uhgeval/prompts/', filename)
