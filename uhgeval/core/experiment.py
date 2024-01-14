@@ -1,13 +1,13 @@
 # @Author : Shichao Song
 # @Email  : song.shichao@outlook.com
-
-
 import multiprocessing as mp
 import time
-from itertools import product
+import yaml
 
-from uhgeval.llm.base import BaseLLM
+from itertools import product
+from loguru import logger
 from uhgeval.evaluator.base import BaseEvaluator
+from uhgeval.llm.base import BaseLLM
 
 
 def experiment(
@@ -70,3 +70,13 @@ def experiment_in_blocks(
 
     print(f'Total time used: {time.time()-start}s.')
     print(f'END')
+
+def load_yaml_conf(yaml_path: str):
+    try:
+        with open(yaml_path, 'r', encoding='utf-8') as file:
+            config_data = yaml.safe_load(file)
+        return config_data
+    except FileNotFoundError:
+        logger.error(f"File '{yaml_path}' not found.")
+    except yaml.YAMLError as e:
+        logger.error(f"Unable to load YAML file '{yaml_path}': {e}")
