@@ -1,0 +1,45 @@
+# This file contains three parts: dataset, evaluator, llm
+
+#-----------datasets to be evaluated on and the evaluator it uses-----------
+seed: 22
+dataset:
+    - "xinhua.XinhuaHallucinations":
+            path: "data/Xinhua/XinhuaHallucinations.json"
+            evaluator:
+                - "discriminative.DiscriminativeEvaluatorKeywordLevel"
+                - "discriminative.DiscriminativeEvaluatorSentenceLevel"
+                - "generative.GenerativeEvaluator"
+                - "selective.SelectiveEvaluator"
+#    - "truthfulqa.TruthfunQAGeneration":
+#            path: "data/TruthfulQA/TruthfulQA.csv"
+#            evaluator:
+#                - "TruthQAEvaluator.GenerativeEvaluatorTrutufulQA"
+#    - "truthfulqa.TruthfunQAMC1":
+#          path: "data/TruthfulQA/mc_task.json"
+#          evaluator:
+#              - "TruthQAEvaluator.SelectiveEvaluatorMC1"
+#    - "truthfulqa.TruthfunQAMC2":
+#          path: "data/TruthfulQA/mc_task.json"
+#          evaluator:
+#              - "TruthQAEvaluator.SelectiveEvaluatorMC2"
+
+#-----------models to be evaluated-----------
+llm:
+    api:
+        # - GPT:
+        #     model_name: gpt-3.5-turbo
+        #     report: true
+    local:
+        - Baichuan2_13B_Chat:
+            temperature: 0.8
+            top_p: 0.6
+#        - ChatGLM3_6B_Chat:
+#            temperature: 0.8
+#            top_p: 0.6
+
+
+#    remote:
+#        - Qwen_14B_Chat:
+#            temperature: 0.8
+#        - Xinyu_7B_Chat:
+#            temperature: 0.8
