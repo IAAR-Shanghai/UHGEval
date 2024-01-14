@@ -53,9 +53,8 @@ def save_overalls_radar(
 ) -> None:
     """"""
     def draw_radar(data: list[list], path: str) -> None:
-        import math
-
         import matplotlib.pyplot as plt
+        import math
         plt.style.use('ggplot')
 
         for row in data:
