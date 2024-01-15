@@ -8,6 +8,7 @@
 </a>
 
 # Contents
+- [What's New](#what-s-new)
 - [Introduction](#introduction)
 - [Project Structure](#project-structure)
   * [UHGEval](#uhgeval)
@@ -18,7 +19,10 @@
 - [Contributions](#contributions)
 - [TODOs](#todos)
 - [CITATION](#citation)
-
+# What's New <a><img width="35" height="20" src="https://user-images.githubusercontent.com/12782558/212848161-5e783dd6-11e8-4fe0-bbba-39ffb77730be.png"></a>
+- **\[2024.1.14\]** We have added the code for loading the model locally. Now you can evaluate your model.
+- **\[2024.1.13\]**  We have added the feature to initialize experiments through a configuration file. Now you just need to revise the `config.yaml` and run `run_uhgeval.py`.
+- **\[2024.1.12\]** We have supported [**[TruthfulQA](https://github.com/sylinrl/TruthfulQA)**], including both generative and Multi-Choices evaluation methods.
 # 🍄 Introduction
 
 Benchmarking the Hallucination of Chinese Large Language Models via Unconstrained Generation
@@ -84,9 +88,9 @@ Although we have conducted thorough automatic annotation and manual verification
 <details>
 <summary>Click me to show all TODOs</summary>
 
-- [ ] llm, metric: enable loading from HuggingFace
-- [ ] config: utilize conifg to realize convenient experiment
-- [ ] TruthfulQA: add new dataset and corresponding evaluators
+- [x] llm, metric: enable loading from HuggingFace
+- [x] config: utilize conifg to realize convenient experiment
+- [x] TruthfulQA: add new dataset and corresponding evaluators
 - [ ] another repo: creation pipeline of dataset
 - [ ] contribution: OpenCompass
 
