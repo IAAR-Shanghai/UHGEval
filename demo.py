@@ -8,7 +8,7 @@
 from uhgeval.dataset.xinhua import XinhuaHallucinations
 from uhgeval.evaluator.selective import SelectiveEvaluator
 from uhgeval.core.analyst import save_overalls
-from uhgeval.llm.gpt import GPT
+from uhgeval.llm.api import GPT
 
 
 llm = GPT(model_name='gpt-3.5-turbo', temperature=0.3, max_new_tokens=16)

@@ -16,7 +16,8 @@ def save_overalls(
 
     # Read all evaluation results saved at output_dir
     overalls = defaultdict(lambda: defaultdict(dict))
-    outputs = sorted(os.listdir(output_dir))
+    # Filter only the files with a '.json' extension
+    outputs = sorted([file for file in os.listdir(output_dir) if file.endswith('.json')])
     for output in outputs:
         with open(os.path.join(output_dir, output), encoding='utf-8') as f:
             obj = json.load(f)

@@ -61,6 +61,8 @@ class GPT(BaseLLM):
 
     def request(self, query: str) -> str:
         openai.api_key = conf.GPT_api_key
+        if conf.GPT_api_base and conf.GPT_api_base.strip():
+            openai.base_url = conf.GPT_api_base
         res = openai.ChatCompletion.create(
             model = self.params['model_name'],
             messages = [{"role": "user","content": query}],
