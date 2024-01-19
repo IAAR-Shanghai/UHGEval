@@ -1,5 +1,5 @@
-# @Author : Shichao Song
-# @Email  : song.shichao@outlook.com
+# @Author : Shichao Song, Xianghui Peng
+# @Email  : song.shichao@outlook.com, pxh0996@163.com
 
 
 import json
