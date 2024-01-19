@@ -74,4 +74,4 @@ class GPT(BaseLLM):
 
         token_consumed = res.usage.total_tokens
         logger.info(f'GPT token consumed: {token_consumed}') if self.report else ()
-        return real_res 
+        return real_res
