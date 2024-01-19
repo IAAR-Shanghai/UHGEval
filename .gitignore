@@ -2,7 +2,3 @@
 __pycache__
 real_config.py
 *.log
-uhgeval/.DS_Store
-tests/.DS_Store
-data/.DS_Store
-.DS_Store
