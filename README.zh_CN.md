@@ -8,6 +8,7 @@
 </a>
 
 # 目录
+- [最新进展](#最新进展)
 - [介绍](#介绍)
 - [项目结构](#项目结构)
   * [uhgeval](#uhgeval)
@@ -18,7 +19,10 @@
 - [贡献](#贡献)
 - [引用](#引用)
 
-
+# 最新进展 <a><img width="35" height="20" src="https://user-images.githubusercontent.com/12782558/212848161-5e783dd6-11e8-4fe0-bbba-39ffb77730be.png"></a>
+- **\[2024.1.14\]** 我们添加了用于本地加载模型的代码。现在你可以评估你自己的模型。
+- **\[2024.1.13\]**  我们添加了从配置文件初始化实验的功能。现在你只需要编辑`config.yaml` 然后运行 `run_uhgeval.py`.
+- **\[2024.1.12\]** 我们现在支持 [**[TruthfulQA](https://github.com/sylinrl/TruthfulQA)**], 包括生成式和多线选择题两种评估方式。
 
 # 🍄 介绍
 
@@ -28,6 +32,7 @@
 * 灵活：易于扩展，所有模块均可替换。
 
 <p align="center"><img src="./assets/eval_framework.png" alt="" width="80%"></p>
+
 # 项目结构
 这个项目包含多个文件夹和多个Python脚本文件。这里给出它们对应的介绍。
 
