@@ -1,5 +1,5 @@
-# @Author : Shichao Song
-# @Email  : song.shichao@outlook.com
+# @Author : Shichao Song, Xianghui Peng
+# @Email  : song.shichao@outlook.com, pxh0996@163.com
 
 
 import json
@@ -61,15 +61,17 @@ class GPT(BaseLLM):
 
     def request(self, query: str) -> str:
         openai.api_key = conf.GPT_api_key
-        res = openai.ChatCompletion.create(
+        if conf.GPT_api_base and conf.GPT_api_base.strip():
+            openai.base_url = conf.GPT_api_base
+        res = openai.chat.completions.create(
             model = self.params['model_name'],
             messages = [{"role": "user","content": query}],
             temperature = self.params['temperature'],
             max_tokens = self.params['max_new_tokens'],
             top_p = self.params['top_p'],
         )
-        real_res = res["choices"][0]["message"]["content"]
+        real_res = res.choices[0].message.content
 
-        token_consumed = res['usage']['total_tokens']
+        token_consumed = res.usage.total_tokens
         logger.info(f'GPT token consumed: {token_consumed}') if self.report else ()
         return real_res

@@ -1,7 +1,7 @@
 evaluate>=0.4.1
 text2vec>=1.2.9
 torch>=2.0.1
-openai==0.28.1
+openai==1.8.0
 loguru>=0.7.2
 tqdm>=4.65.0
 nltk>=3.6.7
