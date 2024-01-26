@@ -10,7 +10,6 @@ Baichuan2_53B_secret_key = ''
 # GPT series
 # https://platform.openai.com/docs/guides/text-generation
 GPT_api_key = ''
-GPT_api_base = ''
 
 
 # ─── Models Accessed Through Remote Deployment ────────────────────────────────
@@ -40,3 +39,16 @@ Xinyu_7B_token = ''
 
 Xinyu_70B_url = ''
 Xinyu_70B_token = ''
+
+# ─── Models Accessed Through Local Path ────────────────────────────────
+# Note: Ensure model's files are in Huggingface format.
+
+Aquila_local_path = ''
+
+Baichuan2_13b_local_path = ''
+
+ChatGLM3_local_path = ''
+
+Qwen_local_path = ''
+
+InternLM_local_path = ''
