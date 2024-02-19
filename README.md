@@ -38,7 +38,7 @@
 
 UHGEval is a comprehensive framework designed for evaluating the hallucination phenomena in Chinese large language models (LLMs) through unconstrained text generation. Its architecture offers flexibility and extensibility, allowing for easy integration of new datasets, models, and evaluation metrics.
 
-![UHGEval Architecture](./assets/eval_framework.png)
+<p align="center"><img src="./assets/eval_framework.png" alt="" width="80%"></p>
 
 Additionally, we've made the dataset creation process transparent and accessible through our open-source pipeline, [UHGEval-dataset](https://github.com/IAAR-Shanghai/UHGEval-dataset). This enables researchers to craft customized datasets. UHGEval supports seamless integration of these datasets, facilitating comprehensive evaluations. A prime example is our incorporation of the [TruthfulQA](https://github.com/sylinrl/TruthfulQA) dataset, showcasing the framework's capability to adapt to diverse evaluation needs.
 
