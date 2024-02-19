@@ -22,9 +22,9 @@
 
 ## What's New 🆕
 
-- **2024.1.14**: Added local model loading for evaluation.
-- **2024.1.13**: Introduced experiment initialization via `config.yaml`.
-- **2024.1.12**: Supported [TruthfulQA](https://github.com/sylinrl/TruthfulQA) with generative and Multi-Choices evaluation.
+- **2024.02.19**: Fully supported experiment initialization via `config.yaml`.
+- **2024.01.14**: Added local model loading for evaluation.
+- **2024.01.12**: Supported [TruthfulQA](https://github.com/sylinrl/TruthfulQA) with generative and Multi-Choices evaluation.
 
 <details><summary>Click me to show all TODOs</summary>
 
@@ -85,7 +85,7 @@ Additionally, we've made the dataset creation process transparent and accessible
 
 For a quick demonstration:
 
-- execute [`demo.py`](demo.py). 
+- Execute [`demo.py`](demo.py). 
 - Note: An OpenAI API key is necessary for running the demo.
 
 To fully leverage the UHGEval framework:
