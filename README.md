@@ -28,8 +28,8 @@
 
 <details><summary>Click me to show all TODOs</summary>
 
-- [ ] fix: type compatibility
 - [ ] fix: GPU OOM
+- [ ] refactor: interface design
 - [ ] contribution: OpenCompass
 
 </details>
