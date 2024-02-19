@@ -30,6 +30,14 @@ class BaseLLM(ABC):
             'top_k': top_k,
             **more_params
         }
+        self.post_init()
+    
+    @abstractmethod
+    def post_init(self):
+        """Post initialization method for subclasses.
+        Normally, this method should initialize the model and tokenizer.
+        """
+        ...
 
     def update_params(self, inplace: bool = True, **params):
         if inplace:

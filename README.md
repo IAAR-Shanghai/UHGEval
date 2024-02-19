@@ -28,7 +28,6 @@
 
 <details><summary>Click me to show all TODOs</summary>
 
-- [ ] fix: GPU OOM
 - [ ] refactor: interface design
 - [ ] contribution: OpenCompass
 
