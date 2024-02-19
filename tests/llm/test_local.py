@@ -1,6 +1,3 @@
-# @Author : YeZhaohui Wang
-# @Email  : wyzh0912@126.com
-
 """Unit tests for the uhgeval.llm.base module.
 
 This module contains unittests for the llm deployed locally.

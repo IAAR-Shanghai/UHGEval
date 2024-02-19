@@ -1,7 +1,3 @@
-# @Author : Shichao Song
-# @Email  : song.shichao@outlook.com
-
-
 import json
 import os
 import random

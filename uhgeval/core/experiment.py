@@ -1,5 +1,3 @@
-# @Author : Shichao Song
-# @Email  : song.shichao@outlook.com
 import multiprocessing as mp
 import time
 import yaml

@@ -1,6 +1,3 @@
-# @Author : YeZhaohui Wang
-# @Email  : wyzh0912@126.com
-
 import csv
 import json
 import os

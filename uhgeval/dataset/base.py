@@ -1,7 +1,3 @@
-# @Author : Shichao Song
-# @Email  : song.shichao@outlook.com
-
-
 from abc import ABC, abstractmethod
 
 

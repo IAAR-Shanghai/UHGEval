@@ -1,7 +1,3 @@
-# @Author : Shichao Song, Yezhaohui Wang
-# @Email  : song.shichao@outlook.com, wyzh0912@126.com
-
-
 import copy
 import json
 import os

@@ -1,6 +1,3 @@
-# @Author : Shichao Song
-# @Email  : song.shichao@outlook.com
-
 """Unit tests for the uhgeval.llm.remote module.
 
 This module contains unittests for the llm deployed remotely.

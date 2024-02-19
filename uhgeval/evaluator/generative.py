@@ -1,6 +1,3 @@
-# @Author : Shichao Song
-# @Email  : song.shichao@outlook.com
-
 import datetime
 
 from uhgeval.evaluator.base import BaseEvaluator

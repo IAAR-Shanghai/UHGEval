@@ -1,7 +1,3 @@
-# @Author : YeZhaohui Wang
-# @Email  : wyzh0912@126.com
-
-
 import unittest
 
 from uhgeval.dataset.truthfulqa import TruthfunQAMC1

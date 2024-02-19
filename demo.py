@@ -1,7 +1,3 @@
-# @Author : Shichao Song
-# @Email  : song.shichao@outlook.com
-
-
 """Evaluate GPT-3.5-Turbo on selective evaluation with 5 data points."""
 
 

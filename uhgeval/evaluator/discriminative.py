@@ -1,7 +1,3 @@
-# @Author : Shichao Song, Zhaohui Wangye
-# @Email  : song.shichao@outlook.com, wyzh0912@126.com
-
-
 import datetime
 import re
 

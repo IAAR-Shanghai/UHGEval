@@ -47,10 +47,8 @@ Additionally, we've made the dataset creation process transparent and accessible
 .
 ├── .github
 ├── .gitignore
-├── CITATION.bib
 ├── LICENSE
 ├── README.md
-├── README.zh_CN.md
 ├── archived_experiments    # Experiment results no longer in active use
 ├── assets                  # Static files like images used in documentation
 ├── config.yaml             # Configuration file for initializing experiments
@@ -131,14 +129,3 @@ You can also contribute to the project by adding new datasets, integrating new m
 
 > [!Note]
 > Remember to read the [Contribution Guidelines](./.github/CONTRIBUTING.md) before creating a pull request!
-
-## Citation
-
-```BibTeX
-@article{UHGEval,
-    title={UHGEval: Benchmarking the Hallucination of Chinese Large Language Models via Unconstrained Generation},
-    author={Xun Liang and Shichao Song and Simin Niu and Zhiyu Li and Feiyu Xiong and Bo Tang and Zhaohui Wy and Dawei He and Peng Cheng and Zhonghao Wang and Haiying Deng},
-    journal={arXiv preprint arXiv:2311.15296},
-    year={2023},
-}
-```

@@ -1,7 +1,3 @@
-# @Author : Shichao Song, Xianghui Peng
-# @Email  : song.shichao@outlook.com, pxh0996@163.com
-
-
 import json
 
 import openai

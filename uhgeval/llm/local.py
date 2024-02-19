@@ -1,7 +1,3 @@
-# @Author : YeZhaohui Wang, Shichao Song
-# @Email  : wyzh0912@126.com, song.shichao@outlook.com
-
-
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
