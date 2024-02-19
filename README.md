@@ -28,7 +28,7 @@
 
 <details><summary>Click me to show all TODOs</summary>
 
-- [ ] refactor: interface design
+- [ ] tests: comprehensive testing
 - [ ] contribution: OpenCompass
 
 </details>
@@ -76,16 +76,22 @@ Additionally, we've made the dataset creation process transparent and accessible
 
 ## Quick Start
 
-Get started quickly with a 20-line demo program.
+1. Ensure you have Python 3.10.0+
+2. `pip install -r requirements.txt`
+3. Prepare your model configuration file:
+    - Use [`uhgeval/configs/example_config.py`](uhgeval/configs/example_config.py) as a template.
+    - Create a new file `uhgeval/configs/real_config.py`.
+    - In this new file, specify configurations for the models you wish to evaluate, including details like the model's name, type, token, private key, etc.
 
-* UHGEval requires Python>=3.10.0
-* `pip install -r requirements.txt`
-* Take `uhgeval/configs/example_config.py` as an example, create `uhgeval/configs/real_config.py` and add configs of models you want to evaluate to this script.
-* Run `demo.py`
+For a quick demonstration:
 
-## Advanced Usage
+- execute [`demo.py`](demo.py). 
+- Note: An OpenAI API key is necessary for running the demo.
 
-Utilize `run_uhgeval.py` or `run_uhgeval_future.py` for a comprehensive understanding of this project. The former is currently a **provisional piece** of code slated for removal in the future; whereas the latter is **command-line executable** code intended for future use. Both scripts will perform a complete evaluation process using the GPT model. 
+To fully leverage the UHGEval framework:
+
+- Reference [`config.yaml`](config.yaml) to adjust configurations for both datasets and models you want to evaluate on.
+- Execute the evaluation with `python run_uhgeval.py --conf=config.yaml`.
 
 ## Results for Experiment-20231117
 
@@ -97,7 +103,7 @@ Utilize `run_uhgeval.py` or `run_uhgeval_future.py` for a comprehensive understa
 
 The original experimental results are in [./archived_experiments/20231117](./archived_experiments/20231117).
 
-## Customization Guideline
+## Customization Guidelines
 
 ### Adding New Datasets
 - **Place Dataset Files**: Add your dataset files under `data/dataset_name/`, e.g., `data/MyDataset/A.json`.
@@ -117,7 +123,7 @@ The original experimental results are in [./archived_experiments/20231117](./arc
 - **Model Interaction Method**: Introduce a method for model interaction in `uhgeval/llm/base.py`.
 - **Prepare Prompt Files**: Create prompt files for your evaluator at `uhgeval/prompts/yourPrompts.txt`.
 
-## Contributions
+## Contribution Guidelines
 
 Although we have conducted thorough automatic annotation and manual verification, there may still be errors or imperfections in our [XinhuaHallucinations](./data/Xinhua/XinhuaHallucinations.json) dataset with over 5000 data points. We encourage you to raise issues or submit pull requests to assist us in improving the consistency of the dataset. You may also receive corresponding recognition and rewards for your contributions.
 

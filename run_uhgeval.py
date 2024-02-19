@@ -1,27 +1,40 @@
+import argparse
 import importlib
 import sys
 
 from loguru import logger
+
 from uhgeval.core.analyst import save_overalls, save_overalls_by_type
-from uhgeval.core.experiment import experiment_in_blocks
-from uhgeval.core.experiment import load_yaml_conf
+from uhgeval.core.experiment import experiment_in_blocks, load_yaml_conf
+
+
+def get_conf_path() -> str:
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--conf', type=str, default='config.yaml')
+    args = parser.parse_args()
+    conf_path = args.conf
+    return conf_path
+
 
 if __name__ == '__main__':
-    seed = 22
-    enable_log_saving = True
+
+    # ─── 1. Read Configuration File ───────────────────────────────────────
+
+    conf = load_yaml_conf(get_conf_path())
+
+    # ─── 2. Set Logger ────────────────────────────────────────────────────
+
+    # TODO: Currently, loguru does not support log settings below when using
+    # the 'spawn' method in multiprocessing.
     logger.remove()  # Remove all logger handlers including the stderr logger handler
     logger.add(sys.stderr, level=40)  # Update stderr logger
-    logger.add('logs/uhgeval_{time}.log',
-               level=0) if enable_log_saving else ...
-    # TODO: Currently, loguru does not support log settings above when using
-    # the 'spawn' method in multiprocessing.
-    experiment_configs_path = 'config.yaml'
-    experiment_conf = load_yaml_conf(experiment_configs_path)
-    datasets_configs = experiment_conf.get('dataset')
+    logger.add('logs/uhgeval_{time}.log', level=0) if conf.get('enable_log_saving', True) else ...
+
+    # ─── 3. Load Datasets And Their Evaluators ────────────────────────────
+
+    datasets_configs = conf.get('dataset', None)
     evaluated_dataset_list = []
     evaluator_list = []
-
-    # Load dataset configs
     for dataset_dict in datasets_configs:
         dataset_name = list(dataset_dict.keys())[0]
         parameters = list(dataset_dict.values())[0]
@@ -46,8 +59,9 @@ if __name__ == '__main__':
         else:
             evaluated_dataset_list.append(dataset_class())
 
-    # Load llm configs
-    llm_configs = experiment_conf.get('llm')
+    # ─── 4. Load LLMs To Be Evaluated ─────────────────────────────────────
+
+    llm_configs = conf.get('llm', None)
     evaluated_llm_list = []
     for llm_type, llm_list in llm_configs.items():
         if llm_list is None:
@@ -67,14 +81,17 @@ if __name__ == '__main__':
             else:
                 evaluated_llm_list.append(llm_class())
 
+    # ─── 5. Run Experiments ───────────────────────────────────────────────
+
     for dataset in evaluated_dataset_list:
         experiment_in_blocks(
-            dataset,
-            evaluated_llm_list,
-            evaluator_list,
-            3,
-            170,
-            0,
-            seed)
+            dataset, 
+            evaluated_llm_list, 
+            evaluator_list, 
+            conf.get('processes', 3), 
+            conf.get('num_blocks', 170), 
+            conf.get('start_block', 0), 
+            conf.get('seed', 22)
+        )
         save_overalls()
         # save_overalls_by_type()

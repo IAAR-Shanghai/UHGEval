@@ -8,3 +8,4 @@ nltk>=3.6.7
 rouge_score>=0.1.2
 absl-py>=2.0.0
 sentencepiece
+pyyaml
