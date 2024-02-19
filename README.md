@@ -2,8 +2,8 @@
     🍄 UHGEval: Benchmarking the Hallucination of Chinese Large Language Models via Unconstrained Generation
 </h1>
 <p align="center">
-    Safety: Ensuring the security of experimental data is of utmost importance.<br>
-    Flexibility: Easily expandable, with all modules replaceable.
+<b>UHGEval</b>, a framework designed to evaluate hallucination.<br>
+<b>XinhuaHallucinations</b>, a dataset of hallucination instances.
 </p>
 <p align="center">
     <a href="https://opensource.org/license/apache-2-0/">
@@ -13,7 +13,7 @@
         <img alt="arXiv Paper" src="https://img.shields.io/badge/Paper-arXiv-red.svg">
     </a>
     <a href="./data/Xinhua/XinhuaHallucinations.json">
-        <img alt="Static Badge" src="https://img.shields.io/badge/Dataset-XinhuaHallucination-blue">
+        <img alt="Static Badge" src="https://img.shields.io/badge/Dataset-XinhuaHallucinations-blue">
     </a>
     <a href="https://github.com/IAAR-Shanghai/UHGEval-dataset">
         <img alt="Static Badge" src="https://img.shields.io/badge/GitHub-Dataset_Creation_Pipeline-green">
