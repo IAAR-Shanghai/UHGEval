@@ -2,22 +2,9 @@
     🍄 UHGEval: Benchmarking the Hallucination of Chinese Large Language Models via Unconstrained Generation
 </h1>
 <p align="center">
-<b>UHGEval</b>, a framework designed to evaluate hallucination.<br>
-<b>XinhuaHallucinations</b>, a dataset of hallucination instances.
-</p>
-<p align="center">
-    <a href="https://opensource.org/license/apache-2-0/">
-        <img alt="License: Apache" src="https://img.shields.io/badge/License-Apache2.0-yellow.svg">
-    </a>
-    <a href="https://arxiv.org/abs/2311.15296">
-        <img alt="arXiv Paper" src="https://img.shields.io/badge/Paper-arXiv-red.svg">
-    </a>
-    <a href="./data/Xinhua/XinhuaHallucinations.json">
-        <img alt="Static Badge" src="https://img.shields.io/badge/Dataset-XinhuaHallucinations-blue">
-    </a>
-    <a href="https://github.com/IAAR-Shanghai/UHGEval-dataset">
-        <img alt="Static Badge" src="https://img.shields.io/badge/GitHub-Dataset_Creation_Pipeline-green">
-    </a>
+<a href="./uhgeval/"><b>UHGEval</b></a>, a framework designed to evaluate hallucination.<br>
+<a href="./data/Xinhua/XinhuaHallucinations.json"><b>XinhuaHallucinations</b></a>, a dataset of hallucination instances.<br>
+<a href="https://github.com/IAAR-Shanghai/UHGEval-dataset"><b>UHGEval-dataset</b></a>, the pipeline of creating hallucination dataset.
 </p>
 
 ## What's New 🆕
@@ -26,13 +13,6 @@
 - **2024.01.14**: Added local model loading for evaluation.
 - **2024.01.12**: Supported [TruthfulQA](https://github.com/sylinrl/TruthfulQA) with generative and Multi-Choices evaluation.
 
-<details><summary>Click me to show all TODOs</summary>
-
-- [ ] tests: comprehensive testing
-- [ ] contribution: OpenCompass
-
-</details>
-
 ## Introduction
 
 UHGEval is a comprehensive framework designed for evaluating the hallucination phenomena in Chinese large language models (LLMs) through unconstrained text generation. Its architecture offers flexibility and extensibility, allowing for easy integration of new datasets, models, and evaluation metrics.
@@ -40,6 +20,39 @@ UHGEval is a comprehensive framework designed for evaluating the hallucination p
 <p align="center"><img src="./assets/eval_framework.png" alt="" width="80%"></p>
 
 Additionally, we've made the dataset creation process transparent and accessible through our open-source pipeline, [UHGEval-dataset](https://github.com/IAAR-Shanghai/UHGEval-dataset). This enables researchers to craft customized datasets. UHGEval supports seamless integration of these datasets, facilitating comprehensive evaluations. A prime example is our incorporation of the [TruthfulQA](https://github.com/sylinrl/TruthfulQA) dataset, showcasing the framework's capability to adapt to diverse evaluation needs.
+
+## An Example of XinhuaHallucinations
+
+<details><summary>Click me to show the example</summary>
+
+```json
+{
+    "id": "num_000432",
+    "headLine": "（社会）江苏首次评选消费者最喜爱的百种绿色食品",
+    "broadcastDate": "2015-02-11 19:46:49",
+    "type": "num",
+    "newsBeginning": "  新华社南京2月11日电（记者李响）“民以食为天，食以安为先”。江苏11日发布“首届消费者最喜爱的绿色食品”评选结果，老山蜂蜜等100种食品获得消费者“最喜爱的绿色食品”称号。",
+    "hallucinatedContinuation": "江苏是全国绿色食品生产最发达的省份之一。",
+    "generatedBy": "InternLM_20B_Chat",
+    "appearedKeywords": [
+        "江苏",
+        "全国",
+        "绿色食品生产"
+    ],
+    "allKeywords": {
+        "江苏": "合理",
+        "全国": "合理",
+        "绿色食品生产": "合理",
+        "发达": "不合理，没有事实证明江苏是全国绿色食品生产发达的省份，但可以确定的是，江苏在绿色食品生产上有积极的实践和推动",
+        "省份": "合理",
+        "之一": "不合理，没有具体的事实证据表明江苏是全国绿色食品生产发达的省份之一"
+    },
+    "realContinuation": "61家获奖生产企业共同签署诚信公约，共建绿色食品诚信联盟。",
+    "newsRemainder": "61家获奖生产企业共同签署诚信公约，共建绿色食品诚信联盟。这是江苏保障食品安全、推动绿色食品生产的重要举措。\n  此次评选由江苏省绿色食品协会等部门主办，并得到江苏省农委、省委农工办、省工商局、省地税局、省信用办、省消协等单位大力支持。评选历时4个多月，经企业报名、组委会初筛、消费者投票等层层选拔，最终出炉的百强食品榜单由消费者亲自票选得出，网络、短信、报纸及现场投票共310多万份票数，充分说明了评选结果的含金量。\n  食品安全一直是社会关注的热点。此次评选过程中，组委会工作人员走街头、进超市，邀请媒体、消费者、专家深入产地开展绿色食品基地行，除了超市选购外，还搭建“诚信购微信商城”“中国移动MO生活绿色有机馆”等线上销售平台，开创江苏绿色食品“评展销”结合新局面。评选不仅宣传了江苏绿色品牌食品，更推动了省内绿色食品市场诚信体系的建立，为江苏绿色食品走向全国搭建了权威的平台。\n  江苏省农委副主任李俊超表示，绿色食品消费是当前社会重要的消费趋势。本次评选不仅为社会培育了食品安全诚信文化，也提高了消费者对食品质量和标识的甄别能力，实现了消费者和生产企业的“双赢”。\n  与会企业表示，能够入选“首届江苏消费者最喜爱的绿色食品”是消费者的信任和支持，他们将以此荣誉作为企业发展的新起点，严把食品质量关，推介放心安全的绿色品牌食品，促进产业稳定健康发展。（完）"
+}
+```
+
+</details>
 
 ## Project Structure
 
