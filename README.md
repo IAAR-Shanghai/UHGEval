@@ -31,6 +31,8 @@
 
 - [ ] docs: add video tutorial
 - [ ] tests: comprehensive testing
+- [ ] contribution: PapersWithCode
+- [ ] contribution: HuggingFace Datasets
 - [ ] contribution: OpenCompass
 
 </details>
