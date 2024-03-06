@@ -32,7 +32,6 @@ class BaseLLM(ABC):
         }
         self.post_init()
     
-    @abstractmethod
     def post_init(self):
         """Post initialization method for subclasses.
         Normally, this method should initialize the model and tokenizer.

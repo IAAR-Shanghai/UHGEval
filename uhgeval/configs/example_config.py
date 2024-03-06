@@ -21,7 +21,6 @@ Aquila_token = ''
 Baichuan2_13B_url = ''
 Baichuan2_13B_token = ''
 
-
 ChatGLM2_url = ''
 ChatGLM2_token = ''
 
@@ -39,6 +38,14 @@ Xinyu_7B_token = ''
 
 Xinyu_70B_url = ''
 Xinyu_70B_token = ''
+
+
+# ─── Models Accessed Through Local Deployment ────────────────────────────────
+# Note: Use vLLM to deploy models.
+# Link: https://docs.vllm.ai/en/latest/getting_started/quickstart.html
+
+PHI2_vllm_url = ''
+
 
 # ─── Models Accessed Through Local Path ────────────────────────────────
 # Note: Ensure model's files are in Huggingface format.
