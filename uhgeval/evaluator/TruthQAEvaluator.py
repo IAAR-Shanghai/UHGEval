@@ -1,6 +1,15 @@
-# @Author : YeZhaohui Wang
-# @Email  : wyzh0912@126.com
+# @Author : YeZhaohui Wang, Shichao Song
+# @Email  : wyzh0912@126.com, song.shichao@outlook.com
 
+"""
+Note:
+    Due to the problem with the evaluation method using the first-token [1], and the 
+    UHGEval framework does not support checking the logits value of the output token, 
+    therefore, the evaluation in TruthfulQA all use accuracy, not log-likelihood.
+
+References:
+    [1] https://arxiv.org/abs/2402.14499
+"""
 
 import datetime
 
