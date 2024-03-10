@@ -7,8 +7,8 @@ from uhgeval.configs import real_config as conf
 
 
 class VllmModel(BaseLLM):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
         self.vllm_url = ''
 
     def _base_prompt_template(self) -> str:
@@ -36,8 +36,8 @@ class VllmModel(BaseLLM):
 
 
 class PHI2(VllmModel):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
         self.url = conf.PHI2_vllm_url
 
     def _base_prompt_template(self) -> str:
