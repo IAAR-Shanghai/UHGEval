@@ -214,31 +214,6 @@ class BaseLLM(ABC):
         else:
             return 0
 
-    def answer_MC2(self, obj: dict) -> list:
-        """Answer a multiple choice question which has multiple correct choices.
-
-        Returns:
-            list : model's output
-        """
-        template = self._read_prompt_template('truthfulqa_mc2.txt')
-
-        # Shuffle the options
-        items_list = list(obj["mc2_targets"].items())
-        random.shuffle(items_list)
-        obj['mc2_targets'] = dict(items_list)
-
-        options = [
-            f'{chr(65+i)}: {list(obj["mc2_targets"].keys())[i]}' 
-            for i in range(6)
-        ]
-        options = '\n'.join(options)
-        query = template.format(
-            question=obj['question'],
-            options=options,
-        )
-        res = self.safe_request(query)
-        return res
-
     def qa_judge(self, question, answer) -> int:
         """Judge whether the answer is correct or not."""
         template = self._read_prompt_template('qa_judge.txt')
