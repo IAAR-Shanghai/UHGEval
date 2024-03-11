@@ -44,13 +44,15 @@ if __name__ == '__main__':
         dataset_class = getattr(dataset_module, temp_name[1])
 
         # Load evaluator configs
+        evaluators = []
         for evaluator_config in parameters['evaluator']:
             temp_list = evaluator_config.split('.')
             evaluator_module_name = f"uhgeval.evaluator.{temp_list[0]}"
             evaluator_module = importlib.import_module(evaluator_module_name)
             evaluator_class = getattr(evaluator_module, temp_list[1])
             # Instantiate the corresponding class and add it to the evaluator list.
-            evaluator_list.append(evaluator_class)
+            evaluators.append(evaluator_class)
+        evaluator_list.append(evaluators)
         parameters.pop('evaluator')
 
         # Instantiate the corresponding class and add it to the dataset list.
@@ -83,15 +85,10 @@ if __name__ == '__main__':
 
     # ─── 5. Run Experiments ───────────────────────────────────────────────
 
-    for dataset in evaluated_dataset_list:
-        experiment_in_blocks(
-            dataset, 
-            evaluated_llm_list, 
-            evaluator_list, 
-            conf.get('processes', 3), 
-            conf.get('num_blocks', 170), 
-            conf.get('start_block', 0), 
-            conf.get('seed', 22)
-        )
+    for dataset, evaluators in zip(evaluated_dataset_list, evaluator_list):
+        experiment_in_blocks(dataset, evaluated_llm_list, evaluators,
+                             conf.get('processes', 3),
+                             conf.get('num_blocks', 170),
+                             conf.get('start_block', 0), conf.get('seed', 22))
         save_overalls()
         # save_overalls_by_type()
