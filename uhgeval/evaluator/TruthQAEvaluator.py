@@ -128,7 +128,7 @@ class SelectiveEvaluatorMC2(BaseEvaluator):
         valid_corrects = [x for x in corrects if x != -1]
         return {
             'metrics': {
-                'accuracy': sum(valid_corrects) / len(valid_corrects),
+                'accuracy': sum(valid_corrects) / len(valid_corrects) if len(valid_corrects) != 0 else 0,
             },
             'log': {
                 'corrects': corrects,
