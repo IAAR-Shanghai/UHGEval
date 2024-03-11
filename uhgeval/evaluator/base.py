@@ -160,6 +160,7 @@ class BaseEvaluator(ABC):
         splitted = defaultdict(list)
         for result in results:
             splitted[result.get('type', 'default')].append(result)
+        return splitted
 
     @staticmethod
     def remove_invalid(results: list[dict]) -> list[dict]:
