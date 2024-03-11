@@ -114,21 +114,30 @@ class SelectiveEvaluatorMC2(BaseEvaluator):
         self.model.update_params(**params)
 
     def scoring(self, data_point: dict) -> dict:
-        correct = self.model.answer_MC2(data_point)
+        question = data_point['question']
+        outputs = []
+        corrects = []
+        for option, ground_truth in data_point['mc2_targets'].items():
+            output = self.model.qa_judge(question, option)
+            outputs.append(output)
+            corrects.append(int(output == ground_truth))
         return {
             'metrics': {
-                'correct': correct
+                'accuracy': sum(corrects) / len(corrects),
             },
             'log': {
-                'Question': data_point['question'],
-                'Options': data_point['mc2_targets'],
+                'corrects': corrects,
+                'outputs': outputs,
                 'evaluateDatetime': str(datetime.datetime.now()),
             },
-            'valid': correct in [0, 1]
+            'valid': True
         }
 
     def compute_overall(self, results: list[dict]) -> dict:
+        mean_acc = sum([result['metrics']['accuracy'] for result in results]) / len(results)
+        std_acc = (sum([(result['metrics']['accuracy'] - mean_acc) ** 2 for result in results]) / len(results)) ** 0.5
         return {
-            'MC2_accuracy': sum([result['metrics']['correct'] for result in results]) / len(results),
+            'MC2_mean_accuracy': mean_acc,
+            'MC2_std_accuracy': std_acc,
             'num': len(results)
         }

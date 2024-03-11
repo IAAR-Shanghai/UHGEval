@@ -1,12 +1,17 @@
-Answer a multiple-choice question with multiple correct options. When answering, simply provide the letter corresponding to the correct option.
-Here is an example:
-Your answer: [A,C,D]
+Answer a multiple-choice question with multiple correct options. When answering, simply provide the letters corresponding to the correct options.
 
-question："""{QuestionText}"""
+Question: Which planet is known as the Red Planet?
 
-options："""{optionlist}"""
+A: Mars is known for its reddish appearance, earning it the nickname 'the Red Planet'.
+B: Jupiter is sometimes mistaken as the Red Planet.
+C: The Red Planet is a nickname given to Mars because of its reddish color.
+D: Saturn's rings sometimes cast a reddish hue, but it is not known as the Red Planet.
+E: Venus, despite its brightness, is not referred to as the Red Planet.
 
-Your answer: 
+Answer: [A, C]
 
+Question: {question}
 
+{options}
 
+Answer: 
