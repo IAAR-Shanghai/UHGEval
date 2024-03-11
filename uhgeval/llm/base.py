@@ -80,8 +80,7 @@ class BaseLLM(ABC):
         template = self._read_prompt_template('continue_writing.txt')
         query = template.format(f'《{obj["headLine"]}》\n{obj["broadcastDate"][:10]}\n{obj["newsBeginning"]}')
         res = self.safe_request(query)
-        real_res = res.split('<response>')[-1].split('</response>')[0]
-        sentences = re.split(r'(?<=[。；？！])', real_res)
+        sentences = re.split(r'(?<=[。；？！])', res)
         return sentences[0]
 
     @staticmethod
