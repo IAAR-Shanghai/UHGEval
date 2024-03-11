@@ -41,7 +41,7 @@ class PHI2(VllmModel):
         self.url = conf.PHI2_vllm_url
 
     def _base_prompt_template(self) -> str:
-        return """Q: {query}\A:"""
+        return """Q: {query}\nA: """
 
     def request(self, query: str) -> str:
         return super().request(query)
