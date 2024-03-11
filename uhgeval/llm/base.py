@@ -1,6 +1,5 @@
-# @Author : Shichao Song, Zhaohui Wangye
+# @Author : Shichao Song, Yezhaohui Wang
 # @Email  : song.shichao@outlook.com, wyzh0912@126.com
-
 
 
 import copy
@@ -13,6 +12,9 @@ from loguru import logger
 
 
 class BaseLLM(ABC):
+
+    # ─── 1. Interface Functions ───────────────────────────────────────────
+
     def __init__(
             self, 
             model_name: str = None, 
@@ -59,6 +61,20 @@ class BaseLLM(ABC):
             logger.warning(repr(e))
             response = ''
         return response
+
+    @staticmethod
+    def _read_prompt_template(filename: str) -> str:
+        path = os.path.join('uhgeval/prompts/', filename)
+        if os.path.exists(path):
+            with open(path, encoding='utf-8') as f:
+                return f.read()
+        else:
+            logger.error(f'Prompt template not found at {path}')
+            return ''
+
+    # ─── 2. Prompt Engineering Functions ──────────────────────────────────
+
+    # ─── 2.1 For XinhuaHallucination Dataset ──────────────────────────────
 
     def continue_writing(self, obj:dict) -> str:
         template = self._read_prompt_template('continue_writing.txt')
@@ -168,6 +184,7 @@ class BaseLLM(ABC):
             answer = -1
         return (answer, real_res.split('。')[0]) if with_reason else answer
 
+    # ─── 2.2 For TruthfulQA Dataset ───────────────────────────────────────
 
     def answer_MC1(self, obj: dict) -> int:
         """Answer a multiple choice question which has only one correct choice.
@@ -197,34 +214,21 @@ class BaseLLM(ABC):
         else:
             return 0
 
-    def answer_MC2(self, obj: dict) -> int:
-        """Answer a multiple choice question which has multiple correct choices.
-
-        Returns:
-            int : 0 or 1(Answer right or wrong)
-        """
-        template = self._read_prompt_template('truthfulqa_mc2.txt')
-        items_list = list(obj["mc2_targets"].items())
-        random.shuffle(items_list)
-        obj['mc2_targets'] = dict(items_list)
-        optiontext = obj['mc2_targets']
-        target_answer_list = []
-        text = ''
-        for index, (key, value) in enumerate(optiontext.items(), start=1):
-            option_letter = ord('A') + index - 1
-            text = text + f"{option_letter}: {key}\n"
-            if value == 1:
-                target_answer = ord('A') + index - 1
-                target_answer_list.append(target_answer)
+    def qa_judge(self, question, answer) -> int:
+        """Judge whether the answer is correct or not."""
+        template = self._read_prompt_template('qa_judge.txt')
         query = template.format(
-            QuestionText=obj['question'],
-            optionlist=text,
+            question=question,
+            answer=answer
         )
         res = self.safe_request(query)
-        if res == target_answer_list:
+        res = res.strip()
+        if res in ['Correct', 'correct']:
             return 1
-        else:
+        elif res in ['Incorrect', 'incorrect']:
             return 0
+        else:
+            return -1
 
     def answer_Generation(self, obj: dict) -> str:
         """Given a question, generate a 1-2 sentence answer without prompt engineering.
@@ -235,12 +239,3 @@ class BaseLLM(ABC):
         query = obj['Question']
         res = self.safe_request(query)
         return res
-    @staticmethod
-    def _read_prompt_template(filename: str) -> str:
-        path = os.path.join('uhgeval/prompts/', filename)
-        if os.path.exists(path):
-            with open(path, encoding='utf-8') as f:
-                return f.read()
-        else:
-            logger.error(f'Prompt template not found at {path}')
-            return ''
