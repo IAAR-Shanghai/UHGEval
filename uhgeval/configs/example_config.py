@@ -44,8 +44,23 @@ Xinyu_70B_token = ''
 # Note: Use vLLM to deploy models.
 # Link: https://docs.vllm.ai/en/latest/getting_started/quickstart.html
 
+BloomZ_3B_vllm_url = ''
+
+InternLM2_1_8B_Chat_vllm_url = ''
+
+LLaMA2_13B_Chat_vllm_url = ''
+
+LLaMA2_70B_Chat_vllm_url = ''
+
+LLaMA2_7B_Chat_vllm_url = ''
+
+NewModel_vllm_url = ''
+
+OPT_vllm_url = ''
+
 PHI2_vllm_url = ''
 
+Qwen1_5_4B_Chat_vllm_url = ''
 
 # ─── Models Accessed Through Local Path ────────────────────────────────
 # Note: Ensure model's files are in Huggingface format.

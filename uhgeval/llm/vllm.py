@@ -26,13 +26,94 @@ class VllmModel(BaseLLM):
             "n": 1,
             "top_p": self.params['top_p'],
             "top_k": self.params['top_k'],
+            "stop": ["<|endoftext|>", "<|im_end|>"],
         })
         headers = {
             'Content-Type': 'application/json'
         }
         res = requests.request("POST", url, headers=headers, data=payload)
-        res = res.json()['text'][0].replace(query, '')  # VLLM will automatically append the query to the response, so here we remove it.
+        res = res.json()['text']
+        if isinstance(res, list):
+            res = res[0]
+        res = res.replace(query, '')  # VLLM will automatically append the query to the response, so here we remove it.
         return res
+
+
+class BloomZ_3B(VllmModel):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.url = conf.BloomZ_3B_vllm_url
+
+    def _base_prompt_template(self) -> str:
+        return """{query}"""
+
+
+class InternLM2_1_8B_Chat(VllmModel):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.url = conf.InternLM2_1_8B_Chat_vllm_url
+
+    def _base_prompt_template(self) -> str:
+        template = """<|im_start|>system""" \
+            """You are a helpful assistant.<|im_end|>""" \
+            """<|im_start|>user""" \
+            """{query}<|im_end|>""" \
+            """<|im_start|>assistant\n"""
+        return template
+
+
+class LLaMA2_13B_Chat(VllmModel):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.url = conf.LLaMA2_13B_Chat_vllm_url
+
+    def _base_prompt_template(self) -> str:
+        template = """<s>[INST] <<SYS>>""" \
+            """You are being tested. Follow the instruction below. """ \
+            """<</SYS>> {query} [/INST] Sure, I'd be happy to help. Here is the answer:"""
+        return template
+
+
+class LLaMA2_70B_Chat(VllmModel):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.url = conf.LLaMA2_70B_Chat_vllm_url
+
+    def _base_prompt_template(self) -> str:
+        template = """<s>[INST] <<SYS>>""" \
+            """You are being tested. Follow the instruction below. """ \
+            """<</SYS>> {query} [/INST] Sure, I'd be happy to help. Here is the answer:"""
+        return template
+
+
+class LLaMA2_7B_Chat(VllmModel):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.url = conf.LLaMA2_7B_Chat_vllm_url
+
+    def _base_prompt_template(self) -> str:
+        template = """<s>[INST] <<SYS>>""" \
+            """You are being tested. Follow the instruction below. """ \
+            """<</SYS>> {query} [/INST] Sure, I'd be happy to help. Here is the answer:"""
+        return template
+
+
+class NewModel(VllmModel):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.url = conf.NewModel_vllm_url
+
+    def _base_prompt_template(self) -> str:
+        return """{query}"""
+
+
+class OPT(VllmModel):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.url = conf.OPT_vllm_url
+
+    def _base_prompt_template(self) -> str:
+        return """{query}"""
 
 
 class PHI2(VllmModel):
@@ -41,7 +122,15 @@ class PHI2(VllmModel):
         self.url = conf.PHI2_vllm_url
 
     def _base_prompt_template(self) -> str:
-        return """Q: {query}\nA: """
+        return """{query}"""
 
-    def request(self, query: str) -> str:
-        return super().request(query)
+
+class Qwen1_5_4B_Chat(VllmModel):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.url = conf.Qwen1_5_4B_Chat_vllm_url
+
+    def _base_prompt_template(self) -> str:
+        template = """<|im_start|>system\nYou are a helpful assistant.<|im_end|>\n<|im_start|>user\n""" \
+                   """{query}<|im_end|>\n<|im_start|>assistant\n"""
+        return template
