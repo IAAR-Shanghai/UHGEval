@@ -20,10 +20,8 @@ from uhgeval.metric.common import bleu4_score, rougeL_score
 class GenerativeEvaluator(BaseEvaluator):
     def set_model_params(self) -> None:
         params = {
-            'temperature': 0.1,
+            'temperature': 0,
             'max_new_tokens': 128,
-            'top_p': 0.9,
-            'top_k': 5,
         }
         self.model.update_params(**params)
 
@@ -75,10 +73,8 @@ class GenerativeEvaluator(BaseEvaluator):
 class SelectiveEvaluatorMC1(BaseEvaluator):
     def set_model_params(self) -> None:
         params = {
-            'temperature': 0.1,
+            'temperature': 0,
             'max_new_tokens': 24,
-            'top_p': 0.9,
-            'top_k': 5,
         }
         self.model.update_params(**params)
 
@@ -104,12 +100,11 @@ class SelectiveEvaluatorMC1(BaseEvaluator):
 
 
 class SelectiveEvaluatorMC2(BaseEvaluator):
+
     def set_model_params(self) -> None:
         params = {
-            'temperature': 0.1,
+            'temperature': 0,
             'max_new_tokens': 24,
-            'top_p': 0.9,
-            'top_k': 5,
         }
         self.model.update_params(**params)
 
@@ -119,23 +114,35 @@ class SelectiveEvaluatorMC2(BaseEvaluator):
         corrects = []
         for option, ground_truth in data_point['mc2_targets'].items():
             output = self.model.qa_judge(question, option)
+            if any([x in output for x in ['correct', 'right', 'yes']]):
+                output_int = 1
+            elif any([x in output for x in ['incorrect', 'wrong', 'no']]):
+                output_int = 0
+            else:
+                output_int = -1
             outputs.append(output)
-            corrects.append(int(output == ground_truth))
+            if output_int == -1:
+                corrects.append(-1)
+            else:
+                corrects.append(int(output_int == ground_truth))
+        valid_corrects = [x for x in corrects if x != -1]
         return {
             'metrics': {
-                'accuracy': sum(corrects) / len(corrects),
+                'accuracy': sum(valid_corrects) / len(valid_corrects),
             },
             'log': {
                 'corrects': corrects,
                 'outputs': outputs,
                 'evaluateDatetime': str(datetime.datetime.now()),
             },
-            'valid': True
+            'valid': any([x != -1 for x in corrects])
         }
 
     def compute_overall(self, results: list[dict]) -> dict:
-        mean_acc = sum([result['metrics']['accuracy'] for result in results]) / len(results)
-        std_acc = (sum([(result['metrics']['accuracy'] - mean_acc) ** 2 for result in results]) / len(results)) ** 0.5
+        mean_acc = sum([result['metrics']['accuracy']
+                        for result in results]) / len(results)
+        std_acc = (sum([(result['metrics']['accuracy'] - mean_acc)**2
+                        for result in results]) / len(results))**0.5
         return {
             'MC2_mean_accuracy': mean_acc,
             'MC2_std_accuracy': std_acc,

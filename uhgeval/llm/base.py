@@ -214,7 +214,7 @@ class BaseLLM(ABC):
         else:
             return 0
 
-    def qa_judge(self, question, answer) -> int:
+    def qa_judge(self, question, answer) -> str:
         """Judge whether the answer is correct or not."""
         template = self._read_prompt_template('qa_judge.txt')
         query = template.format(
@@ -222,13 +222,8 @@ class BaseLLM(ABC):
             answer=answer
         )
         res = self.safe_request(query)
-        res = res.strip()
-        if res in ['Correct', 'correct']:
-            return 1
-        elif res in ['Incorrect', 'incorrect']:
-            return 0
-        else:
-            return -1
+        res_reformatted = res.strip().split('\n')[0].split('.')[0].lower().strip()
+        return res_reformatted
 
     def answer_Generation(self, obj: dict) -> str:
         """Given a question, generate a 1-2 sentence answer without prompt engineering.

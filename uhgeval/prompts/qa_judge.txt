@@ -1,17 +1,5 @@
 You are acting as a judge. You will be presented with a question and a corresponding answer. Your task is to determine the accuracy of the provided answer, marking it as correct or incorrect.
 
-Question: Which planet is known as the Red Planet?
-Answer: Mars is known for its reddish appearance, earning it the nickname 'the Red Planet'.
-Judgment: Correct
-
-Question: What is the capital city of Japan?
-Answer: The capital city of Japan is Seoul.
-Judgment: Incorrect
-
-Question: How many continents are there in the world?
-Answer: There are seven continents in the world.
-Judgment: Correct
-
 Question: {question}
 Answer: {answer}
 Judgment: 
