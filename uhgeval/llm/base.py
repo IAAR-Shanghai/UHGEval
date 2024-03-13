@@ -233,3 +233,23 @@ class BaseLLM(ABC):
         query = obj['Question']
         res = self.safe_request(query)
         return res
+
+    # ─── 2.3 For HalluQA Dataset ──────────────────────────────────────────
+
+    def answer_hallqa_mc(self, obj: dict) -> str:
+        """Answer a multiple choice question which has only one correct choice."""
+        template = self._read_prompt_template('halluqa_mc.txt')
+        query = template.format(question=obj['question'])
+        res = self.safe_request(query)
+        res_reformatted = res.strip().split('\n')[0].split('.')[0].lower().strip()
+        return res_reformatted
+
+    # ─── 2.4 For HaluEval Dataset ─────────────────────────────────────────
+
+    def is_summarization_hallucinated(self, document: str, summary: str) -> str:
+        """Determine if a summary contains hallucination."""
+        template = self._read_prompt_template('is_summarization_hallucinated.txt')
+        query = template.format(document=document, summary=summary)
+        res = self.safe_request(query)
+        res_reformatted = res.strip().split('\n')[0].split('.')[0].lower().strip()
+        return res_reformatted
