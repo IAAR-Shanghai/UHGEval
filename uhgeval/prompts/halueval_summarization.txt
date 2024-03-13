@@ -18,4 +18,4 @@ You are trying to determine if there is a factual contradiction between the summ
 You should try your best to determine if the summary contains non-factual or hallucinated information according to the above hallucination types. The answer you give MUST be "Yes" or "No".
 #Document#: {document}
 #Summary#: {summary}
-#Your Judgement#: 
+#Your Judgement#:

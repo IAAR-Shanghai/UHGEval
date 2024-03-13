@@ -248,8 +248,8 @@ class BaseLLM(ABC):
 
     def is_summarization_hallucinated(self, document: str, summary: str) -> str:
         """Determine if a summary contains hallucination."""
-        template = self._read_prompt_template('is_summarization_hallucinated.txt')
+        template = self._read_prompt_template('halueval_summarization.txt')
         query = template.format(document=document, summary=summary)
         res = self.safe_request(query)
-        res_reformatted = res.strip().split('\n')[0].split('.')[0].lower().strip()
+        res_reformatted = res.strip().split('\n')[0].lower().strip()
         return res_reformatted
