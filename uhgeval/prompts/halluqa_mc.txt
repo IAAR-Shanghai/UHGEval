@@ -4,4 +4,4 @@ Question: What is the color of the sky? A. Blue B. Red C. Green D. Yellow
 Answer: A
 
 Question: {question}
-Answer: 
+Answer:

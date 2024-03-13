@@ -241,7 +241,7 @@ class BaseLLM(ABC):
         template = self._read_prompt_template('halluqa_mc.txt')
         query = template.format(question=obj['question'])
         res = self.safe_request(query)
-        res_reformatted = res.strip().split('\n')[0].split('.')[0].lower().strip()
+        res_reformatted = res.strip().split('\n')[0].lower().strip()
         return res_reformatted
 
     # ─── 2.4 For HaluEval Dataset ─────────────────────────────────────────
