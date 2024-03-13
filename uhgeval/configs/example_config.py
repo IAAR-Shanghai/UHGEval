@@ -46,6 +46,8 @@ Xinyu_70B_token = ''
 
 BloomZ_3B_vllm_url = ''
 
+Gemma_2B_Chat_vllm_url = ''
+
 InternLM2_1_8B_Chat_vllm_url = ''
 
 LLaMA2_13B_Chat_vllm_url = ''
@@ -71,6 +73,8 @@ Baichuan2_13b_local_path = ''
 
 ChatGLM3_local_path = ''
 
-Qwen_local_path = ''
-
 InternLM_local_path = ''
+
+MiniCPM_local_path = ''
+
+Qwen_local_path = ''

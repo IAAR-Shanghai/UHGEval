@@ -48,6 +48,18 @@ class BloomZ_3B(VllmModel):
         return """{query}"""
 
 
+class Gemma_2B_Chat(VllmModel):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.url = conf.Gemma_2B_Chat_vllm_url
+
+    def _base_prompt_template(self) -> str:
+        template = """<bos><start_of_turn>user""" \
+            """{query}<end_of_turn>""" \
+            """<start_of_turn>model"""
+        return template
+
+
 class InternLM2_1_8B_Chat(VllmModel):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
