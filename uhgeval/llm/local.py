@@ -115,7 +115,7 @@ class MiniCPM_2B_Chat(BaseLLM):
         self.tokenizer = AutoTokenizer.from_pretrained(
             local_path, trust_remote_code=True)
         self.model = AutoModelForCausalLM.from_pretrained(local_path, torch_dtype=torch.bfloat16, 
-                                                     trust_remote_code=True).eval()
+                                                     trust_remote_code=True).cuda().eval()
         self.gen_kwargs = {
             "temperature": self.params['temperature'],
             "do_sample": True,
