@@ -33,6 +33,14 @@ dataset:
     path: "data/TruthfulQA/mc_task.json"
     evaluator:
     - "TruthQAEvaluator.SelectiveEvaluatorMC2"
+- "halueval.HaluEvalSummarization":
+    path: "data/HaluEval/summarization_data.json"
+    evaluator:
+    - "HaluEvalEvaluator.HaluEvalSummarizationEvaluator"
+- "halluqa.HalluQAMC":
+    path: "data/HalluQA/HalluQA_mc.json"
+    evaluator:
+    - "HalluQAEvaluator.HalluQAMCEvaluator"
 
 
 # ─── Models To Be Evaluated ───────────────────────────────────────────────────
