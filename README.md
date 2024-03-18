@@ -29,6 +29,7 @@
 
 <details><summary>Click me to show all TODOs</summary>
 
+- [ ] fix: need to connect to huggingface model hub
 - [ ] docs: add video tutorial
 - [ ] tests: comprehensive testing
 - [ ] contribution: PapersWithCode

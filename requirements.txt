@@ -9,3 +9,6 @@ rouge_score>=0.1.2
 absl-py>=2.0.0
 sentencepiece
 pyyaml
+protobuf
+ninja
+flash_attn
