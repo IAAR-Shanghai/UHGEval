@@ -33,6 +33,14 @@ dataset:
     path: "data/TruthfulQA/mc_task.json"
     evaluator:
     - "TruthQAEvaluator.SelectiveEvaluatorMC2"
+- "halueval.HaluEvalQA":
+    path: "data/HaluEval/qa_data.json"
+    evaluator:
+    - "HaluEvalEvaluator.HaluEvalQAEvaluator"
+- "halueval.HaluEvalDialogue":
+    path: "data/HaluEval/dialogue_data.json"
+    evaluator:
+    - "HaluEvalEvaluator.HaluEvalDialogueEvaluator"
 - "halueval.HaluEvalSummarization":
     path: "data/HaluEval/summarization_data.json"
     evaluator:
