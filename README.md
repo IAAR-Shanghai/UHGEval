@@ -2,9 +2,10 @@
     🍄 UHGEval: Benchmarking the Hallucination of Chinese Large Language Models via Unconstrained Generation
 </h1>
 <p align="center">
+<i>What does this repository include?</i><br>
 <a href="./uhgeval/"><b>UHGEval</b></a>, a framework designed to evaluate hallucination.<br>
 <a href="./data/Xinhua/XinhuaHallucinations.json"><b>XinhuaHallucinations</b></a>, a dataset of hallucination instances.<br>
-<a href="https://github.com/IAAR-Shanghai/UHGEval-dataset"><b>UHGEval-dataset</b></a>, the pipeline of creating hallucination dataset.
+<a href="https://github.com/IAAR-Shanghai/UHGEval-dataset"><b>UHGEval-dataset</b></a>, the pipeline of creating XinhuaHallucinations.
 </p>
 <p align="center">
     <a href="https://opensource.org/license/apache-2-0/">
@@ -23,12 +24,15 @@
 
 ## What's New 🆕
 
+- **2024.03.19**: Supported [HaluEval](https://github.com/RUCAIBox/HaluEval) QA, dialogue and summarization tasks.
+- **2024.03.13**: Supported [HalluQA](https://github.com/OpenMOSS/HalluQA) multi-choice tasks.
 - **2024.02.19**: Fully supported experiment initialization via `config.yaml`.
 - **2024.01.14**: Added local model loading for evaluation.
-- **2024.01.12**: Supported [TruthfulQA](https://github.com/sylinrl/TruthfulQA) with generative and Multi-Choices evaluation.
+- **2024.01.12**: Supported [TruthfulQA](https://github.com/sylinrl/TruthfulQA) generative and multi-choice tasks.
 
 <details><summary>Click me to show all TODOs</summary>
 
+- [ ] docs: readme includes supported models and tasks
 - [ ] fix: need to connect to huggingface model hub
 - [ ] docs: add video tutorial
 - [ ] tests: comprehensive testing
@@ -40,15 +44,13 @@
 
 ## Introduction
 
-UHGEval is a comprehensive framework designed for evaluating the hallucination phenomena in Chinese large language models (LLMs) through unconstrained text generation. Its architecture offers flexibility and extensibility, allowing for easy integration of new datasets, models, and evaluation metrics.
+UHGEval is a comprehensive framework designed for evaluating the hallucination phenomena. Its architecture offers flexibility and extensibility, allowing for easy integration of new datasets, models, and evaluation metrics.
 
 <p align="center"><img src="./assets/eval_framework.png" alt="" width="80%"></p>
 
 Additionally, we've made the dataset creation process transparent and accessible through our open-source pipeline, [UHGEval-dataset](https://github.com/IAAR-Shanghai/UHGEval-dataset). This enables researchers to craft customized datasets. UHGEval supports seamless integration of these datasets, facilitating comprehensive evaluations. A prime example is our incorporation of the [TruthfulQA](https://github.com/sylinrl/TruthfulQA) dataset, showcasing the framework's capability to adapt to diverse evaluation needs.
 
-## An Example of XinhuaHallucinations
-
-<details><summary>Click me to show the example</summary>
+<details><summary>An example of XinhuaHallucinations</summary>
 
 ```json
 {
@@ -79,7 +81,7 @@ Additionally, we've made the dataset creation process transparent and accessible
 
 </details>
 
-## Project Structure
+<details><summary>Project structure</summary>
 
 ```bash
 .
@@ -88,7 +90,6 @@ Additionally, we've made the dataset creation process transparent and accessible
 ├── CITATION.bib
 ├── LICENSE
 ├── README.md
-├── README.zh_CN.md
 ├── archived_experiments    # Experiment results no longer in active use
 ├── assets                  # Static files like images used in documentation
 ├── config.yaml             # Configuration file for initializing experiments
@@ -111,6 +112,8 @@ Additionally, we've made the dataset creation process transparent and accessible
     ├── metric              # Defines evaluation metrics
     └── prompts             # Prompt Engineering
 ```
+
+</details>
 
 ## Quick Start
 
