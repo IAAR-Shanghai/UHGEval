@@ -22,33 +22,35 @@
     </a>
 </p>
 
-## What's New 🆕
-
-- **2024.03.19**: Supported [HaluEval](https://github.com/RUCAIBox/HaluEval) QA, dialogue and summarization tasks.
-- **2024.03.13**: Supported [HalluQA](https://github.com/OpenMOSS/HalluQA) multi-choice tasks.
-- **2024.02.19**: Fully supported experiment initialization via `config.yaml`.
-- **2024.01.14**: Added local model loading for evaluation.
-- **2024.01.12**: Supported [TruthfulQA](https://github.com/sylinrl/TruthfulQA) generative and multi-choice tasks.
-
-<details><summary>Click me to show all TODOs</summary>
-
-- [ ] docs: readme includes supported models and tasks
-- [ ] fix: need to connect to huggingface model hub
-- [ ] docs: add video tutorial
-- [ ] tests: comprehensive testing
-- [ ] contribution: PapersWithCode
-- [ ] contribution: HuggingFace Datasets
-- [ ] contribution: OpenCompass
-
-</details>
-
 ## Introduction
 
-UHGEval is a comprehensive framework designed for evaluating the hallucination phenomena. Its architecture offers flexibility and extensibility, allowing for easy integration of new datasets, models, and evaluation metrics.
+UHGEval is a comprehensive framework designed for evaluating the hallucination phenomena. Its architecture offers flexibility and extensibility, allowing for easy integration of new datasets, models, and evaluation metrics. The framework is user-friendly for evaluating common hallucination tasks, including our XinhuaHallucinations and Oxford's TruthfulQA, among others. Below, we present a list of all supported tasks and models to date.
 
 <p align="center"><img src="./assets/eval_framework.png" alt="" width="80%"></p>
 
-Additionally, we've made the dataset creation process transparent and accessible through our open-source pipeline, [UHGEval-dataset](https://github.com/IAAR-Shanghai/UHGEval-dataset). This enables researchers to craft customized datasets. UHGEval supports seamless integration of these datasets, facilitating comprehensive evaluations. A prime example is our incorporation of the [TruthfulQA](https://github.com/sylinrl/TruthfulQA) dataset, showcasing the framework's capability to adapt to diverse evaluation needs.
+Additionally, we've made XinhuaHallucinations creation process accessible through our open-source pipeline, [UHGEval-dataset](https://github.com/IAAR-Shanghai/UHGEval-dataset). This enables researchers to craft customized datasets.
+
+<details><summary>Supported models of UHGEval framework</summary>
+
+| Model Type | Loading Method               | Example Models                     | References                                                                                                             |
+|------------|------------------------------|------------------------------------|------------------------------------------------------------------------------------------------------------------------|
+| `api`      | `requests`                   | OpenAI models, Baichuan2 53B, etc. | [OpenAI API](https://platform.openai.com/docs/introduction), [Baichuan API](https://platform.baichuan-ai.com/docs/api) |
+| `local`    | HuggingFace `transformers`   | `AutoModelForCausalLM`             | [HuggingFace `transformers`](https://huggingface.co/docs/transformers)                                                 |
+| `remote`   | `requests`                   | Internal use only                  | Not available to the public                                                                                            |
+| `vllm`     | vLLM deployment + `requests` | See vLLM Documentation             | [vLLM](https://docs.vllm.ai/en/latest/)                                                                                |
+
+</details>
+
+<details><summary>Supported tasks of UHGEval framework</summary>
+
+| Tasks                                                            | Sub-tasks                                 | Publisher      | Supported Date |
+|------------------------------------------------------------------|-------------------------------------------|----------------|----------------|
+| [HaluEval](https://github.com/RUCAIBox/HaluEval)                 | QA, dialogue, and summarization           | RUCAIBox       | 2024.03.19     |
+| [HalluQA](https://github.com/OpenMOSS/HalluQA)                   | Multi-choice tasks                        | OpenMOSS       | 2024.03.13     |
+| [TruthfulQA](https://github.com/sylinrl/TruthfulQA)              | Generative and multi-choice tasks         | Oxford         | 2024.01.12     |
+| [XinhuaHallucinations](https://github.com/IAAR-Shanghai/UHGEval) | Generative, selective, and discriminative | IAAR, Shanghai | 2023.11.06     |
+
+</details>
 
 <details><summary>An example of XinhuaHallucinations</summary>
 
@@ -170,7 +172,7 @@ Although we have conducted thorough automatic annotation and manual verification
 
 You can also contribute to the project by adding new datasets, integrating new models, creating custom metrics, or developing new evaluators. We welcome all forms of contributions.
 
-> [!Note]
+> [!Important]
 > Remember to read the [Contribution Guidelines](./.github/CONTRIBUTING.md) before creating a pull request!
 
 ## Citation
@@ -183,3 +185,16 @@ You can also contribute to the project by adding new datasets, integrating new m
     year={2023},
 }
 ```
+
+## TODOs
+
+<details><summary>Click me to show all TODOs</summary>
+
+- [ ] fix: need to connect to huggingface model hub
+- [ ] docs: add video tutorial
+- [ ] tests: comprehensive testing
+- [ ] contribution: PapersWithCode
+- [ ] contribution: HuggingFace Datasets
+- [ ] contribution: OpenCompass
+
+</details>
