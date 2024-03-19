@@ -246,6 +246,22 @@ class BaseLLM(ABC):
 
     # ─── 2.4 For HaluEval Dataset ─────────────────────────────────────────
 
+    def is_qa_hallucinated(self, question: str, answer: str) -> str:
+        """Determine if an answer contains hallucination."""
+        template = self._read_prompt_template('halueval_qa.txt')
+        query = template.format(question=question, answer=answer)
+        res = self.safe_request(query)
+        res_reformatted = res.strip().split('\n')[0].lower().strip()
+        return res_reformatted
+
+    def is_dialogue_hallucinated(self, dialogue: str, response: str) -> str:
+        """Determine if a response contains hallucination."""
+        template = self._read_prompt_template('halueval_dialogue.txt')
+        query = template.format(dialogue=dialogue, response=response)
+        res = self.safe_request(query)
+        res_reformatted = res.strip().split('\n')[0].lower().strip()
+        return res_reformatted
+
     def is_summarization_hallucinated(self, document: str, summary: str) -> str:
         """Determine if a summary contains hallucination."""
         template = self._read_prompt_template('halueval_summarization.txt')
