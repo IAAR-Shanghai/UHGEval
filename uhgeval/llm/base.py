@@ -254,10 +254,10 @@ class BaseLLM(ABC):
         res_reformatted = res.strip().split('\n')[0].lower().strip()
         return res_reformatted
 
-    def is_dialogue_hallucinated(self, dialogue: str, response: str) -> str:
+    def is_dialogue_hallucinated(self, dialogue_history: str, response: str) -> str:
         """Determine if a response contains hallucination."""
         template = self._read_prompt_template('halueval_dialogue.txt')
-        query = template.format(dialogue=dialogue, response=response)
+        query = template.format(dialogue_history=dialogue_history, response=response)
         res = self.safe_request(query)
         res_reformatted = res.strip().split('\n')[0].lower().strip()
         return res_reformatted
