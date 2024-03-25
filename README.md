@@ -190,7 +190,9 @@ You can also contribute to the project by adding new datasets, integrating new m
 
 <details><summary>Click me to show all TODOs</summary>
 
+- [ ] fix: save results by type
 - [ ] fix: need to connect to huggingface model hub
+- [ ] feat: new architecture like hf
 - [ ] docs: add video tutorial
 - [ ] tests: comprehensive testing
 - [ ] contribution: PapersWithCode
