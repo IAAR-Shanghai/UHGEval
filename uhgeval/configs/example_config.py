@@ -10,6 +10,7 @@ Baichuan2_53B_secret_key = ''
 # GPT series
 # https://platform.openai.com/docs/guides/text-generation
 GPT_api_key = ''
+GPT_api_base = ''  # Leave this blank if you're not using a custom base URL
 
 
 # ─── Models Accessed Through Remote Deployment ────────────────────────────────
