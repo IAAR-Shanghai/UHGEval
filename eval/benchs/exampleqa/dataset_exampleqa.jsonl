@@ -1,0 +1,10 @@
+{"id": 1, "type": "math", "q": "What is \\(\\int_{1}^{2} (3x^2 + 2x) \\, dx\\)?", "a": "10"}
+{"id": 2, "type": "math", "q": "What is 8 / 2 + 1?", "a": "5"}
+{"id": 3, "type": "chinese", "q": "人民币的货币符号是什么？", "a": "¥"}
+{"id": 4, "type": "chinese", "q": "中国的首都是上海吗？请回答“是”或“否”", "a": "否"}
+{"id": 5, "type": "english", "q": "What is the capital of France?", "a": "Paris"}
+{"id": 6, "type": "english", "q": "What is the capital of Italy?", "a": "Rome"}
+{"id": 7, "type": "history", "q": "Which year did World War II end?", "a": "1945"}
+{"id": 8, "type": "history", "q": "Is the Great Wall of China the longest wall in the world? Answer with 'yes' or 'no'", "a": "yes"}
+{"id": 9, "type": "science", "q": "What is the atomic number of carbon?", "a": "6"}
+{"id": 10, "type": "science", "q": "What is the chemical symbol for gold?", "a": "Au"}

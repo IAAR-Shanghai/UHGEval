@@ -13,7 +13,7 @@ We appreciate your interest in contributing. To ensure a smooth collaboration, p
     ```
 3. Make your changes and commit them:
     ```bash
-    git commit -m "Add a concise commit message"
+    git commit -m "feat: add new feature"
     ```
 4. Push your changes to your fork:
     ```bash
@@ -23,8 +23,7 @@ We appreciate your interest in contributing. To ensure a smooth collaboration, p
 
 ## Code Style
 
-- Use [isort](https://marketplace.visualstudio.com/items?itemName=ms-python.isort) to reorder import statements
-- Use [yapf](https://marketplace.visualstudio.com/items?itemName=eeyore.yapf) to format Python codes into Google style
- - We use `based_on_style = "google"`. See https://google.github.io/styleguide/pyguide.html
+- Use [isort](https://pycqa.github.io/isort/) to reorder import statements
+- Use [black](https://black.readthedocs.io/en/stable/) to format code
 - Use [Google Docstring Format](https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html) to standardize docstrings
 - Use [Conventional Commits](https://www.conventionalcommits.org/) to make commit messages more readable

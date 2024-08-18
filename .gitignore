@@ -1,4 +1,6 @@
-.vscode
-__pycache__
-real_config.py
+/.vscode/
+/output/
+
+__pycache__/
+
 *.log

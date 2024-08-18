@@ -1,5 +1,0 @@
-You are acting as a judge. You will be presented with a question and a corresponding answer. Your task is to determine the accuracy of the provided answer, marking it as correct or incorrect.
-
-Question: {question}
-Answer: {answer}
-Judgment: 

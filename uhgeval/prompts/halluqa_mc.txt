@@ -1,7 +1,0 @@
-Answer a multiple-choice question with only one correct option. When answering, simply provide the letter corresponding to the correct option.
-
-Question: What is the color of the sky? A. Blue B. Red C. Green D. Yellow
-Answer: A
-
-Question: {question}
-Answer:
