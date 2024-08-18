@@ -10,7 +10,7 @@ These are the experimental results corresponding to the [ACL 2024 paper](https:/
 
 <p align="center"><img src="./experiments/20231117/images/by_type.png" alt="" width="60%"></p>
 
-The original experimental can be found in [./experiments/20231117](./experiments/20231117).
+The original experimental code can be found in [./experiments/20231117](./experiments/20231117).
 
 > [!Caution]
 > The Eval Suite used at that time was an older version. Running the same experiments with the current version might produce slightly different results.
