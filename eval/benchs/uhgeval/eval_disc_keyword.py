@@ -101,8 +101,6 @@ class UHGDiscKeywordEvaluator(BaseUHGEvaluator):
             overall = {
                 key: overall[key] + result["metrics"][key] for key in overall.keys()
             }
-        overall = {
-            f"avg_{key}": value / len(results) for key, value in overall.items()
-        }
+        overall = {f"avg_{key}": value / len(results) for key, value in overall.items()}
         overall["num"] = len(results)
         return overall

@@ -1,7 +1,7 @@
 import os
 
-from ..base_evaluator import BaseEvaluator
 from ...llms.base_llm import BaseLLM
+from ..base_evaluator import BaseEvaluator
 from .dataset import UHGEvalDataset
 
 
