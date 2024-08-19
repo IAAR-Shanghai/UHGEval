@@ -41,19 +41,26 @@ conda activate uhg
 pip install -r requirements.txt
 
 # Run evaluations with OpenAI Compatible API
-python -m eval.cli \
-    --model_type "openai_api" \
-    --model_name "gpt-4o" \
-    --api_key "your_api_key" \
-    --base_url "https://api.openai.com/v1" \
-    --evaluators "ExampleQAEvaluator" "UHGSelectiveEvaluator"
+python -m eval.cli eval openai \
+    --model_name gpt-4o \
+    --api_key your_api_key \
+    --base_url https://api.openai.com/v1 \
+    --evaluators ExampleQAEvaluator UHGSelectiveEvaluator
 
 # Or run evaluations with Hugging Face Transformers
-python -m eval.cli \
-    --model_type "huggingface" \
-    --model_name_or_path "Qwen/Qwen2-0.5B-Instruct" \
+python -m eval.cli eval huggingface \
+    --model_name_or_path Qwen/Qwen2-0.5B-Instruct \
     --apply_chat_template \
-    --evaluators "ExampleQAEvaluator" "UHGSelectiveEvaluator"
+    --evaluators ExampleQAEvaluator UHGSelectiveEvaluator
+
+# After evaluation, you can gather statistics of the evaluation results
+python -m eval.cli stat
+
+# List all available evaluators
+python -m eval.cli list
+
+# Get help
+python -m eval.cli --help
 ```
 
 > [!Tip]
@@ -134,6 +141,9 @@ To facilitate evaluation, we have developed a user-friendly evaluation framework
 <details><summary>Click me to show all TODOs</summary>
 
 - [ ] Implement `get_analysis`
+- [ ] eval.log naming check
+- [ ] uhgeval check prompting
+- [ ] fix: get the first line / word /character error
 - [ ] Test bias in concise dataset
 - [ ] vLLM offline inference benchmarking
 - [ ] Packaging
