@@ -15,12 +15,12 @@
 
 ## Evaluators
 
-| Evaluator               | Metric                             | Description                                                                          |
-| ----------------------- | ---------------------------------- | ------------------------------------------------------------------------------------ |
-| Discriminative-Keyword  | Average Accuracy                   | Given a keyword, the LLM determines whether it contains hallucination.               |
-| Discriminative-Sentence | Average Accuracy                   | Given a sentence, the LLM determines whether it contains hallucination.              |
-| Generative              | BLEU-4, ROUGE-L, kwPrec, BertScore | Given a continuation prompt, the LLM generates a continuation.                       |
-| Selective               | Accuracy                           | Given hallucinated text and unhallucinated text, the LLM selects the realistic text. |
+| Evaluator                  | Metric                             | Description                                                                          |
+| -------------------------- | ---------------------------------- | ------------------------------------------------------------------------------------ |
+| `UHGDiscKeywordEvaluator`  | Average Accuracy                   | Given a keyword, the LLM determines whether it contains hallucination.               |
+| `UHGDiscSentenceEvaluator` | Average Accuracy                   | Given a sentence, the LLM determines whether it contains hallucination.              |
+| `UHGGenerativeEvaluator`   | BLEU-4, ROUGE-L, kwPrec, BertScore | Given a continuation prompt, the LLM generates a continuation.                       |
+| `UHGSelectiveEvaluator`    | Accuracy                           | Given hallucinated text and unhallucinated text, the LLM selects the realistic text. |
 
 ## Citation
 

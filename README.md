@@ -100,14 +100,14 @@ UHGEval is a large-scale benchmark designed for evaluating hallucination in prof
 
 </details>
 
-**Evaluation Methods.** UHGEval offers a variety of evaluation methods:
+**Evaluation Methods.** UHGEval offers a variety of evaluation methods, including discriminative evaluation, generative evaluation, and selective evaluation.
 
-| Evaluator               | Metric                             | Description                                                                          |
-| ----------------------- | ---------------------------------- | ------------------------------------------------------------------------------------ |
-| Discriminative-Keyword  | Average Accuracy                   | Given a keyword, the LLM determines whether it contains hallucination.               |
-| Discriminative-Sentence | Average Accuracy                   | Given a sentence, the LLM determines whether it contains hallucination.              |
-| Generative              | BLEU-4, ROUGE-L, kwPrec, BertScore | Given a continuation prompt, the LLM generates a continuation.                       |
-| Selective               | Accuracy                           | Given hallucinated text and unhallucinated text, the LLM selects the realistic text. |
+| Evaluator                  | Metric                             | Description                                                                          |
+| -------------------------- | ---------------------------------- | ------------------------------------------------------------------------------------ |
+| `UHGDiscKeywordEvaluator`  | Average Accuracy                   | Given a keyword, the LLM determines whether it contains hallucination.               |
+| `UHGDiscSentenceEvaluator` | Average Accuracy                   | Given a sentence, the LLM determines whether it contains hallucination.              |
+| `UHGGenerativeEvaluator`   | BLEU-4, ROUGE-L, kwPrec, BertScore | Given a continuation prompt, the LLM generates a continuation.                       |
+| `UHGSelectiveEvaluator`    | Accuracy                           | Given hallucinated text and unhallucinated text, the LLM selects the realistic text. |
 
 ## Eval Suite
 
@@ -121,9 +121,9 @@ To facilitate evaluation, we have developed a user-friendly evaluation framework
 
 ## Learn More
 
-- Eval Suite architecture: [Markdown](docs/architecture.md)
-- Add new benchmarks or model loaders: [Markdown](docs/add-bench-or-model.md)
-- Some experiment results: [Markdown](docs/experiments.md)
+- [Eval Suite architecture](docs/architecture.md)
+- [Add new benchmarks or model loaders](docs/add-bench-or-model.md)
+- [Some experiment results](docs/experiments.md)
 
 ## Citation
 
@@ -140,15 +140,13 @@ To facilitate evaluation, we have developed a user-friendly evaluation framework
 
 <details><summary>Click me to show all TODOs</summary>
 
-- [ ] Implement `get_analysis`
-- [ ] eval.log naming check
-- [ ] uhgeval check prompting
-- [ ] fix: get the first line / word /character error
-- [ ] Test bias in concise dataset
-- [ ] vLLM offline inference benchmarking
-- [ ] Packaging
-- [ ] Update citation with DOI
-- [ ] Finish all TODOs in docs
-- [ ] Add TruthfulQA benchmark
+- [ ] fix: uhgeval check prompting
+- [ ] fix: get the first line / word /character
+- [ ] fix: test bias in concise dataset
+- [ ] docs: finish all TODOs in docs
+- [ ] feat: vLLM offline inference benchmarking
+- [ ] build: packaging
+- [ ] feat(benchs): add TruthfulQA benchmark
+- [ ] docs: update citation with DOI
 
 </details>
