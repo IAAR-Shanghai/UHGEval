@@ -26,7 +26,7 @@ class TestEvaluationFunctions(unittest.TestCase):
     def test_bert_score(self):
         continuation = "这是一个测试"
         reference = "这是一个测试"
-        self.assertAlmostEquals(bert_score(continuation, reference), 1.0, 6)
+        self.assertAlmostEqual(bert_score(continuation, reference), 1.0, 6)
 
 
 if __name__ == "__main__":
