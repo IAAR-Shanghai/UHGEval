@@ -51,7 +51,7 @@ class HaluEvalDialogEvaluator(BaseHaluEvalEvaluator):
         )
         response = self.model.safe_request(query)
 
-        answer = response.strip().split()  
+        answer = response.strip().split()
         # Extract the first word, such as "Yes", "No", "#Yes", "No."
         # Note: "".strip() returns [] instead of [""]
         answer = answer[0] if answer else ""

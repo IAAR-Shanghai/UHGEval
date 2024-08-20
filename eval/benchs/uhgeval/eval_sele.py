@@ -41,8 +41,8 @@ class UHGSelectiveEvaluator(BaseUHGEvaluator):
         """Given two continuations, determine which one is more accurate.
 
         Returns:
-            tuple: (answer, response). `answer` is 1 if the first continuation is more 
-            accurate, 2 if the second one is more accurate, and -1 if error. `response` 
+            tuple: (answer, response). `answer` is 1 if the first continuation is more
+            accurate, 2 if the second one is more accurate, and -1 if error. `response`
             is the model's response.
         """
         query = PROMPT_TEMPLATE.format(
