@@ -49,7 +49,11 @@ class OpenAIAPI(BaseLLM):
             del configs["do_sample"]
         self.generation_configs.update(configs)
 
-    @retry(wait=wait_random_exponential(min=1, max=60), stop=stop_after_attempt(6), reraise=True)
+    @retry(
+        wait=wait_random_exponential(min=1, max=60),
+        stop=stop_after_attempt(6),
+        reraise=True,
+    )
     def _request(self, query: str) -> str:
         response_obj = self.client.chat.completions.create(
             messages=[{"role": "user", "content": query}],
