@@ -78,8 +78,12 @@ class UHGDiscKeywordEvaluator(BaseUHGEvaluator):
         predictions = dict()
         for idx, kw in enumerate(selected_kws):
             label, justification = self.is_kw_hallucinated(kw, data_point)
-            predictions[kw] = (ground_truth[idx], label, justification)
-        predicted_labels = [item[1] for item in predictions.values()]
+            predictions[kw] = {
+                "hallucinated": bool(ground_truth[idx]),
+                "prediction": bool(label),
+                "justification": justification,
+            }
+        predicted_labels = [v["prediction"] for v in predictions.values()]
 
         # Accuracy calculation
         accuracy = (

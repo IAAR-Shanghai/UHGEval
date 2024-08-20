@@ -75,7 +75,11 @@ class UHGSelectiveEvaluator(BaseUHGEvaluator):
             correct = answer == 1
         return {
             "metrics": {"correct": correct},
-            "log": {"first_hallu_then_unhallu": first_hallu_then_unhallu},
+            "log": {
+                "A": "hallucinatedCont." if first_hallu_then_unhallu else "realCont.",
+                "B": "realCont." if first_hallu_then_unhallu else "hallucinatedCont.",
+                "Which is true?": "A" if answer == 1 else ("B" if answer == 2 else ""),
+            },
             "valid": answer in [1, 2],
         }
 
