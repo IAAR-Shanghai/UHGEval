@@ -42,6 +42,7 @@ class UHGDiscSentenceEvaluator(BaseUHGEvaluator):
             continuation=continuation,
         )
         response = self.model.safe_request(query)
+        response = response.strip()
 
         if response.startswith("续写不符合现实"):
             answer = 1

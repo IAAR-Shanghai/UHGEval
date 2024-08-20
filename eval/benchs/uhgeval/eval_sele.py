@@ -37,12 +37,13 @@ B："""{contn2}"""
 
 class UHGSelectiveEvaluator(BaseUHGEvaluator):
 
-    def which_is_true(self, contn1: str, contn2: str, obj: dict) -> int:
+    def which_is_true(self, contn1: str, contn2: str, obj: dict) -> tuple[int, str]:
         """Given two continuations, determine which one is more accurate.
 
         Returns:
-            int: 1 if contn1 is more accurate, 2 if contn2 is more accurate,
-            -1 if an error occurs.
+            tuple: (answer, response). `answer` is 1 if the first continuation is more 
+            accurate, 2 if the second one is more accurate, and -1 if error. `response` 
+            is the model's response.
         """
         query = PROMPT_TEMPLATE.format(
             headLine=obj["headLine"],
@@ -54,13 +55,14 @@ class UHGSelectiveEvaluator(BaseUHGEvaluator):
         response = self.model.safe_request(query)
 
         alphabet_answer = response.split("更符合现实，更准确")[0].strip()
+        alphabet_answer = alphabet_answer[0] if alphabet_answer else ""
         if alphabet_answer == "A":
             answer = 1
         elif alphabet_answer == "B":
             answer = 2
         else:
             answer = -1
-        return answer
+        return answer, response
 
     def scoring(self, data_point: dict) -> dict:
         hallu = data_point["hallucinatedContinuation"]
@@ -68,17 +70,18 @@ class UHGSelectiveEvaluator(BaseUHGEvaluator):
 
         # Randomly choose the order of the two continuations
         if first_hallu_then_unhallu := len(hallu) % 2 == 0:
-            answer = self.which_is_true(hallu, unhallu, data_point)
+            answer, response = self.which_is_true(hallu, unhallu, data_point)
             correct = answer == 2
         else:
-            answer = self.which_is_true(unhallu, hallu, data_point)
+            answer, response = self.which_is_true(unhallu, hallu, data_point)
             correct = answer == 1
         return {
             "metrics": {"correct": correct},
             "log": {
-                "A": "hallucinatedCont." if first_hallu_then_unhallu else "realCont.",
-                "B": "realCont." if first_hallu_then_unhallu else "hallucinatedCont.",
-                "Which is true?": "A" if answer == 1 else ("B" if answer == 2 else ""),
+                "a": "hallucinatedCont." if first_hallu_then_unhallu else "realCont.",
+                "b": "realCont." if first_hallu_then_unhallu else "hallucinatedCont.",
+                "answer": "A" if answer == 1 else ("B" if answer == 2 else ""),
+                "response": response,
             },
             "valid": answer in [1, 2],
         }

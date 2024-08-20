@@ -44,6 +44,7 @@ class UHGDiscKeywordEvaluator(BaseUHGEvaluator):
             keyword=kw,
         )
         response = self.model.safe_request(query)
+        response = response.strip()
 
         if response.startswith("不符合现实"):
             hallucinated = 1

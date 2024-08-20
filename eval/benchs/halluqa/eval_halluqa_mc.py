@@ -27,7 +27,11 @@ class HalluQAMCEvaluator(HalluQABaseEvaluator):
     def scoring(self, data_point: dict) -> dict:
         query = PROMPT_TEMPLATE.format(question=data_point["question"])
         response = self.model.safe_request(query)
-        answer = response.strip()[0]  # Get the first character
+
+        # Extract the first character
+        answer = response.strip()
+        answer = answer[0] if answer else ""
+
         ground_truth = data_point["answer"].replace("Answer: ", "")
         return {
             "metrics": {

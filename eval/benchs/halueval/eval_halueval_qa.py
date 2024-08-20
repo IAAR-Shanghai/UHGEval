@@ -52,11 +52,17 @@ class HaluEvalQAEvaluator(BaseHaluEvalEvaluator):
             + data_point["question"]
             + "\n#Answer#: "
             + answer_under_evaluation
-            + "\n#Your Judgement#:"
+            + "\n#Your Judgement#: "
         )
         response = self.model.safe_request(query)
-        answer = response.strip().split("\n")[0].strip()  # First line
-        answer = answer.replace(".", " ").replace(",", " ").split()[0]  # First word
+
+        answer = response.strip().split()  
+        # Extract the first word, such as "Yes", "No", "#Yes", "No."
+        # Note: "".strip() returns [] instead of [""]
+        answer = answer[0] if answer else ""
+        # Remove the leading "#", ".", ","
+        answer = answer.strip("#").strip(".").strip(",")
+
 
         return {
             "metrics": {
