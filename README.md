@@ -140,8 +140,6 @@ To facilitate evaluation, we have developed a user-friendly evaluation framework
 
 <details><summary>Click me to show all TODOs</summary>
 
-- [ ] fix: uhgeval check prompting
-- [ ] fix: get the first line / word /character
 - [ ] fix: test bias in concise dataset
 - [ ] docs: finish all TODOs in docs
 - [ ] feat: vLLM offline inference benchmarking
