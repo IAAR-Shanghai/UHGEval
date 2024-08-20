@@ -38,7 +38,7 @@ class BaseLLM(ABC):
         try:
             response = self._request(query)
         except Exception as e:
-            logger.warning(f"An error occurred: {e}")
+            logger.error(f"An error occurred: {e}")
             response = ""
         if response.startswith(query):  # Remove the query from the response
             response = response[len(query) :]
