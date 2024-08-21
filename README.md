@@ -113,11 +113,12 @@ UHGEval is a large-scale benchmark designed for evaluating hallucination in prof
 
 To facilitate evaluation, we have developed a user-friendly evaluation framework called Eval Suite. Currently, Eval Suite supports common hallucination evaluation benchmarks, allowing for comprehensive evaluation of the same LLM with just one command as shown in the [Quick Start](#quick-start) section.
 
-| Benchmark | Evaluator                                                                                                      | More Information                             |
-| --------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
-| HalluQA   | `HalluQAMCEvaluator`                                                                                           | [eval/benchs/halluqa](eval/benchs/halluqa)   |
-| HaluEval  | `HaluEvalDialogEvaluator`<br>`HaluEvalQAEvaluator`<br>`HaluEvalSummaEvaluator`                                 | [eval/benchs/halueval](eval/benchs/halueval) |
-| UHGEval   | `UHGDiscKeywordEvaluator`<br>`UHGDiscSentenceEvaluator`<br>`UHGGenerativeEvaluator`<br>`UHGSelectiveEvaluator` | [eval/benchs/uhgeval](eval/benchs/uhgeval)   |
+| Benchmark | Evaluator                                                                                                      | More Information                               |
+| --------- | -------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| ExampleQA | `ExampleQAEvaluator`                                                                                           | [eval/benchs/exampleqa](eval/benchs/exampleqa) |
+| HalluQA   | `HalluQAMCEvaluator`                                                                                           | [eval/benchs/halluqa](eval/benchs/halluqa)     |
+| HaluEval  | `HaluEvalDialogEvaluator`<br>`HaluEvalQAEvaluator`<br>`HaluEvalSummaEvaluator`                                 | [eval/benchs/halueval](eval/benchs/halueval)   |
+| UHGEval   | `UHGDiscKeywordEvaluator`<br>`UHGDiscSentenceEvaluator`<br>`UHGGenerativeEvaluator`<br>`UHGSelectiveEvaluator` | [eval/benchs/uhgeval](eval/benchs/uhgeval)     |
 
 ## Learn More
 

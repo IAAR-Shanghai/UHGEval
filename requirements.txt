@@ -1,6 +1,7 @@
 # Common
 torch
 tqdm
+ipykernel
 
 # OpenAI API
 openai
@@ -9,6 +10,7 @@ tenacity
 # Hugging Face Transformers
 transformers
 accelerate
+sentencepiece
 
 # Metrics
 nltk
