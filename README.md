@@ -141,7 +141,6 @@ To facilitate evaluation, we have developed a user-friendly evaluation framework
 
 <details><summary>Click me to show all TODOs</summary>
 
-- [ ] fix: test bias in concise dataset
 - [ ] docs: finish all TODOs in docs
 - [ ] feat: vLLM offline inference benchmarking
 - [ ] build: packaging

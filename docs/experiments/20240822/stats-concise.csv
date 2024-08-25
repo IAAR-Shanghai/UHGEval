@@ -1,0 +1,4 @@
+,UHGDiscKeywordEvaluator_avg_accuracy,UHGDiscKeywordEvaluator_avg_num_kws,UHGDiscKeywordEvaluator_num,UHGDiscSentenceEvaluator_avg_accuracy,UHGDiscSentenceEvaluator_num,UHGGenerativeEvaluator_avg_bleu_4,UHGGenerativeEvaluator_avg_rouge_l,UHGGenerativeEvaluator_avg_kw_prec,UHGGenerativeEvaluator_avg_bert_score,UHGGenerativeEvaluator_avg_length,UHGGenerativeEvaluator_num,UHGSelectiveEvaluator_accuracy,UHGSelectiveEvaluator_num
+Qwen/Qwen1.5-7B-Chat,0.5282511904761907,4.164,1000,0.5010172939979655,983,0.0003061321650435665,0.06941446917655358,0.19909815289465202,0.6983832279741764,70.61,1000,0.442,1000
+THUDM/glm-4-9b-chat,0.518475,4.164,1000,0.509783728115345,971,0.00019468853775506773,0.07641416001031273,0.34087335434173627,0.6985361185371876,60.071,1000,0.469,1000
+meta-llama/Meta-Llama-3.1-8B-Instruct,0.48835833333333334,4.164,1000,0.5064516129032258,775,3.6758962766974315e-06,0.022931510312290248,0.15780291930291934,0.4444511514157057,22.235,1000,0.516,1000
