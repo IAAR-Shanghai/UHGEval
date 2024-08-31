@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description"
+    content="A comprehensive benchmark for evaluating hallucination in the field of Chinese professional generation using unconstrained paradigm.">
+  <meta property="og:title"
+    content="UHGEval: Benchmarking the Hallucination of Chinese Large Language Models via Unconstrained Generation" />
+  <meta property="og:description"
+    content="A comprehensive benchmark for evaluating hallucination in the field of Chinese professional generation using unconstrained paradigm." />
+  <meta property="og:url" content="URL OF THE WEBSITE" />
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <!-- <meta property="og:image" content="static/image/your_banner_image.png" />
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/> -->
+
+
+  <meta name="twitter:title"
+    content="UHGEval: Benchmarking the Hallucination of Chinese Large Language Models via Unconstrained Generation">
+  <meta name="twitter:description"
+    content="A comprehensive benchmark for evaluating hallucination in the field of Chinese professional generation using unconstrained paradigm.">
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <!-- <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
+  <meta name="twitter:card" content="summary_large_image"> -->
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="benchmark, hallucination, evaluation, unconstrained, UHGEval">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>UHGEval</title>
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.png">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+
+  <!-- Load MathJax -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">🍄 UHGEval: Benchmarking the Hallucination of Chinese Large
+              Language Models via Unconstrained Generation</h1>
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+              <span class="author-block">
+                Xun Liang<sup>*</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://ki-seki.github.io/" target="_blank">Shichao Song</a><sup>*</sup>,
+              </span>
+              <span class="author-block">
+                Simin Niu<sup>*</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://github.com/zhiyulee-RUC" target="_blank">Zhiyu Li</a><sup>†</sup><sup>✉</sup>,
+              </span>
+              <span class="author-block">
+                Feiyu Xiong<sup>†</sup>,
+              </span>
+              <span class="author-block">
+                Bo Tang<sup>†</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://github.com/wyzh0912" target="_blank">Yezhaohui Wang</a><sup>†</sup>,
+              </span>
+              <span class="author-block">
+                Dawei He<sup>‡</sup>,
+              </span>
+              <span class="author-block">
+                Peng Cheng<sup>‡</sup>,
+              </span>
+              <span class="author-block">
+                Zhonghao Wang<sup>‡</sup>,
+              </span>
+              <span class="author-block">
+                Haiying Deng<sup>‡</sup>
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <br>School of Information, Renmin University of China, Beijing, China<sup>*</sup><br>
+                Institute for Advanced Algorithms Research, Shanghai, China<sup>†</sup><br>
+                State Key Laboratory of Media Convergence Production Technology and Systems, Beijing,
+                China<sup>‡</sup><br><br>
+                ACL 2024
+              </span>
+              <span class="eql-cntrb">
+                <small><br><sup>*</sup>Equal Contribution</small>
+                <small><br><sup>✉</sup>Corresponding author: lizy@iaar.ac.cn</small>
+              </span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+
+                <!-- ACL Anthology -->
+                <span class="link-block">
+                  <a href="https://aclanthology.org/2024.acl-long.288/" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">📖</span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+
+                <!-- arXiv -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2311.15296" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="ai ai-arxiv"></i></span>
+                    <span>Preprint</span>
+                  </a>
+                </span>
+
+                <!-- GitHub -->
+                <span class="link-block">
+                  <a href="https://github.com/IAAR-Shanghai/UHGEval" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fab fa-github"></i></span>
+                    <span>Code</span>
+                  </a>
+
+                </span>
+
+                <!-- Hugging Face -->
+                <span class="link-block">
+                  <a href="https://huggingface.co/datasets/Ki-Seki/UHGEvalDataset" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">🤗</span>
+                    <span>Dataset</span>
+                  </a>
+                </span>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Paper abstract -->
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Large language models (LLMs) produce hallucinated text, compromising their practical utility in professional contexts. 
+              To assess the reliability of LLMs, numerous initiatives have developed benchmark evaluations for hallucination phenomena. 
+              However, they often employ constrained generation techniques to produce the evaluation dataset due to cost and time limitations. 
+              For instance, this may involve employing directed hallucination induction or deliberately modifying authentic text to generate hallucinations. 
+              These are not congruent with the unrestricted text generation demanded by real-world applications. 
+              Furthermore, a well-established Chinese-language dataset dedicated to the evaluation of hallucinations is presently lacking. 
+              Consequently, we have developed an \( \mathbb{U} \)nconstrained \( \mathbb{H} \)allucination \( \mathbb{G} \)eneration <u>Eval</u>uation (\( \mathbb{UHG} \)Eval), containing hallucinations generated by LLMs with minimal restrictions. 
+              Concurrently, we have established a comprehensive benchmark evaluation framework to aid subsequent researchers in undertaking scalable and reproducible experiments. 
+              We have also evaluated prominent Chinese LLMs and the GPT series models to derive insights regarding hallucination.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End paper abstract -->
+
+
+  <!-- Image carousel -->
+  <section class="hero is-small">
+    <div class="hero-body">
+      <div class="container">
+        <div id="results-carousel" >
+          <div class="item">
+            <!-- Your image here -->
+            <img src="static/images/framework.png" alt="MY ALT TEXT" />
+
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End image carousel -->
+
+  <!--BibTex citation -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@article{UHGEval,
+        title={UHGEval: Benchmarking the Hallucination of Chinese Large Language Models via Unconstrained Generation},
+        author={Xun Liang and Shichao Song and Simin Niu and Zhiyu Li and Feiyu Xiong and Bo Tang and Zhaohui Wy and Dawei He and Peng Cheng and Zhonghao Wang and Haiying Deng},
+        journal={arXiv preprint arXiv:2311.15296},
+        year={2023},
+    }</code></pre>
+    </div>
+  </section>
+  <!--End BibTex citation -->
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+
+            <p>
+              This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template"
+                target="_blank">Academic Project Page Template</a> which was adopted from the <a
+                href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+              You are free to borrow the of this website, we just ask that you link back to this page in the footer.
+              <br> This website is licensed under a <a rel="license"
+                href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+                Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Statcounter tracking code -->
+
+  <!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+  <!-- End of Statcounter Code -->
+
+</body>
+
+</html>
