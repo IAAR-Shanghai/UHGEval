@@ -141,10 +141,10 @@ To facilitate evaluation, we have developed a user-friendly evaluation framework
 
 <details><summary>Click me to show all TODOs</summary>
 
-- [ ] docs: finish all TODOs in docs
 - [ ] feat: vLLM offline inference benchmarking
 - [ ] build: packaging
 - [ ] feat(benchs): add TruthfulQA benchmark
 - [ ] docs: update citation with DOI
+- [ ] other: promotion
 
 </details>

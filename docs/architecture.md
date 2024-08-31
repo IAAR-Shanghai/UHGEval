@@ -2,9 +2,11 @@
 
 ## Architecture
 
-TODO
+Eval Suite is a lightweight, extensible framework with three main components: `benchs`, `llms`, and auxiliary modules. The `benchs` component defines benchmarks, each with datasets and evaluators. The `llms` component manages model loading from OpenAI-compatible APIs or Hugging Face. Auxiliary modules handle CLI, logging, and metrics.
 
-## Project Structure
+A base evaluator and dataset under `benchs` provide default evaluation logic and data loading, which benchmarks inherit and extend.
+
+## Structure
 
 ```bash
 eval

@@ -2,6 +2,14 @@
 
 We appreciate your interest in contributing. To ensure a smooth collaboration, please review the following guidelines.
 
+> [!Note]
+> Please ensure that your code passes all tests and `black` code formatting before opening a pull request.
+> You can run the following commands to check your code:
+> ```bash
+> python -m unittest discover -s tests/ -p 'test*.py' -v
+> black . --check
+> ```
+
 ## How to Contribute
 
 1. Get the latest version of the repository:
@@ -23,7 +31,7 @@ We appreciate your interest in contributing. To ensure a smooth collaboration, p
 
 ## Code Style
 
+- (Mandatory) Use [black](https://black.readthedocs.io/en/stable/) to format code
 - Use [isort](https://pycqa.github.io/isort/) to reorder import statements
-- Use [black](https://black.readthedocs.io/en/stable/) to format code
 - Use [Google Docstring Format](https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html) to standardize docstrings
 - Use [Conventional Commits](https://www.conventionalcommits.org/) to make commit messages more readable
