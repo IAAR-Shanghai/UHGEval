@@ -129,11 +129,30 @@ To facilitate evaluation, we have developed a user-friendly evaluation framework
 ## Citation
 
 ```bibtex
-@article{liang2023uhgeval,
-  title={Uhgeval: Benchmarking the hallucination of chinese large language models via unconstrained generation},
-  author={Liang, Xun and Song, Shichao and Niu, Simin and Li, Zhiyu and Xiong, Feiyu and Tang, Bo and Wy, Zhaohui and He, Dawei and Cheng, Peng and Wang, Zhonghao and others},
-  journal={arXiv preprint arXiv:2311.15296},
-  year={2023}
+@inproceedings{liang-etal-2024-uhgeval,
+    title = "{UHGE}val: Benchmarking the Hallucination of {C}hinese Large Language Models via Unconstrained Generation",
+    author = "Liang, Xun  and
+      Song, Shichao  and
+      Niu, Simin  and
+      Li, Zhiyu  and
+      Xiong, Feiyu  and
+      Tang, Bo  and
+      Wang, Yezhaohui  and
+      He, Dawei  and
+      Peng, Cheng  and
+      Wang, Zhonghao  and
+      Deng, Haiying",
+    editor = "Ku, Lun-Wei  and
+      Martins, Andre  and
+      Srikumar, Vivek",
+    booktitle = "Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    month = aug,
+    year = "2024",
+    address = "Bangkok, Thailand",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2024.acl-long.288",
+    doi = "10.18653/v1/2024.acl-long.288",
+    pages = "5266--5293",
 }
 ```
 
@@ -144,7 +163,6 @@ To facilitate evaluation, we have developed a user-friendly evaluation framework
 - [ ] feat: vLLM offline inference benchmarking
 - [ ] build: packaging
 - [ ] feat(benchs): add TruthfulQA benchmark
-- [ ] docs: update citation with DOI
 - [ ] other: promotion
 
 </details>
