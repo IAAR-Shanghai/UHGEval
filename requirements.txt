@@ -16,6 +16,7 @@ sentencepiece
 nltk
 rouge_score
 text2vec
+absl-py
 
 # Formatting
 black
