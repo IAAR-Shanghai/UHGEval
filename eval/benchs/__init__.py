@@ -1,4 +1,5 @@
 from .base_evaluator import BaseEvaluator
+from .ceval.eval_ceval import CEvalEvaluator
 from .exampleqa.eval_exampleqa import ExampleQAEvaluator
 from .halluqa.eval_halluqa_mc import HalluQAMCEvaluator
 from .halueval.eval_halueval_dialog import HaluEvalDialogEvaluator
@@ -11,6 +12,8 @@ from .uhgeval.eval_sele import UHGSelectiveEvaluator
 
 # ! Register all evaluators here in alphabetical order.
 __all__ = [
+    # CEval
+    "CEvalEvaluator",
     # ExampleQA
     "ExampleQAEvaluator",
     # HalluQA
