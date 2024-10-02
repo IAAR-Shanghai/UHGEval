@@ -6,7 +6,7 @@
     <i>What does this repository include?</i><br>
     <b><a href="./eval/benchs/uhgeval/">UHGEval</a></b>: An unconstrained hallucination evaluation benchmark.<br>
     <b><a href="./eval/">Eval Suite</a></b>: A user-friendly evaluation framework for hallucination tasks.<br>
-    Eval Suite supports other relevant benchmarks, such as <a href="https://github.com/OpenMOSS/HalluQA">HalluQA</a> and <a href="https://github.com/RUCAIBox/HaluEval">HaluEval</a>.
+    Eval Suite supports other benchmarks, such as <a href="https://github.com/OpenMOSS/HalluQA">HalluQA</a> and <a href="https://github.com/RUCAIBox/HaluEval">HaluEval</a>.
 </p>
 
 <p align="center">
@@ -115,6 +115,7 @@ To facilitate evaluation, we have developed a user-friendly evaluation framework
 
 | Benchmark | Evaluator                                                                                                      | More Information                               |
 | --------- | -------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| C-Eval    | `CEvalEvaluator`                                                                                               | [eval/benchs/ceval](eval/benchs/ceval)         |
 | ExampleQA | `ExampleQAEvaluator`                                                                                           | [eval/benchs/exampleqa](eval/benchs/exampleqa) |
 | HalluQA   | `HalluQAMCEvaluator`                                                                                           | [eval/benchs/halluqa](eval/benchs/halluqa)     |
 | HaluEval  | `HaluEvalDialogEvaluator`<br>`HaluEvalQAEvaluator`<br>`HaluEvalSummaEvaluator`                                 | [eval/benchs/halueval](eval/benchs/halueval)   |
