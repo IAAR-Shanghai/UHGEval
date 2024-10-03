@@ -2,7 +2,7 @@ import unittest
 
 import torch
 
-from eval.llms.huggingface import HuggingFace
+from eval_suite.llms.huggingface import HuggingFace
 
 
 class TestHuggingFace(unittest.TestCase):

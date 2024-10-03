@@ -4,8 +4,8 @@
 
 <p align="center">
     <i>What does this repository include?</i><br>
-    <b><a href="./eval/benchs/uhgeval/">UHGEval</a></b>: An unconstrained hallucination evaluation benchmark.<br>
-    <b><a href="./eval/">Eval Suite</a></b>: A user-friendly evaluation framework for hallucination tasks.<br>
+    <b><a href="./src/eval_suite/benchs/uhgeval/">UHGEval</a></b>: An unconstrained hallucination evaluation benchmark.<br>
+    <b><a href="./src/eval_suite/">Eval Suite</a></b>: A user-friendly evaluation framework for hallucination tasks.<br>
     Eval Suite supports other benchmarks, such as <a href="https://github.com/OpenMOSS/HalluQA">HalluQA</a> and <a href="https://github.com/RUCAIBox/HaluEval">HaluEval</a>.
 </p>
 
@@ -31,36 +31,32 @@
 ## Quick Start
 
 ```bash
-# Clone the repository
-git clone https://github.com/IAAR-Shanghai/UHGEval.git
-cd UHGEval
-
-# Install dependencies
+# Install Eval Suite
 conda create -n uhg python=3.10
 conda activate uhg
-pip install -r requirements.txt
+pip install eval-suite
 
 # Run evaluations with OpenAI Compatible API
-python -m eval.cli eval openai \
+eval_suite eval openai \
     --model_name gpt-4o \
     --api_key your_api_key \
     --base_url https://api.openai.com/v1 \
     --evaluators ExampleQAEvaluator UHGSelectiveEvaluator
 
 # Or run evaluations with Hugging Face Transformers
-python -m eval.cli eval huggingface \
+eval_suite eval huggingface \
     --model_name_or_path Qwen/Qwen2-0.5B-Instruct \
     --apply_chat_template \
     --evaluators ExampleQAEvaluator UHGSelectiveEvaluator
 
 # After evaluation, you can gather statistics of the evaluation results
-python -m eval.cli stat
+eval_suite stat
 
 # List all available evaluators
-python -m eval.cli list
+eval_suite list
 
 # Get help
-python -m eval.cli --help
+eval_suite --help
 ```
 
 > [!Tip]
@@ -113,13 +109,13 @@ UHGEval is a large-scale benchmark designed for evaluating hallucination in prof
 
 To facilitate evaluation, we have developed a user-friendly evaluation framework called Eval Suite. Currently, Eval Suite supports common hallucination evaluation benchmarks, allowing for comprehensive evaluation of the same LLM with just one command as shown in the [Quick Start](#quick-start) section.
 
-| Benchmark | Evaluator                                                                                                      | More Information                               |
-| --------- | -------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| C-Eval    | `CEvalEvaluator`                                                                                               | [eval/benchs/ceval](eval/benchs/ceval)         |
-| ExampleQA | `ExampleQAEvaluator`                                                                                           | [eval/benchs/exampleqa](eval/benchs/exampleqa) |
-| HalluQA   | `HalluQAMCEvaluator`                                                                                           | [eval/benchs/halluqa](eval/benchs/halluqa)     |
-| HaluEval  | `HaluEvalDialogEvaluator`<br>`HaluEvalQAEvaluator`<br>`HaluEvalSummaEvaluator`                                 | [eval/benchs/halueval](eval/benchs/halueval)   |
-| UHGEval   | `UHGDiscKeywordEvaluator`<br>`UHGDiscSentenceEvaluator`<br>`UHGGenerativeEvaluator`<br>`UHGSelectiveEvaluator` | [eval/benchs/uhgeval](eval/benchs/uhgeval)     |
+| Benchmark | Evaluator                                                                                                      | More Information                                                   |
+| --------- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| C-Eval    | `CEvalEvaluator`                                                                                               | [src/eval_suite/benchs/ceval](src/eval_suite/benchs/ceval)         |
+| ExampleQA | `ExampleQAEvaluator`                                                                                           | [src/eval_suite/benchs/exampleqa](src/eval_suite/benchs/exampleqa) |
+| HalluQA   | `HalluQAMCEvaluator`                                                                                           | [src/eval_suite/benchs/halluqa](src/eval_suite/benchs/halluqa)     |
+| HaluEval  | `HaluEvalDialogEvaluator`<br>`HaluEvalQAEvaluator`<br>`HaluEvalSummaEvaluator`                                 | [src/eval_suite/benchs/halueval](src/eval_suite/benchs/halueval)   |
+| UHGEval   | `UHGDiscKeywordEvaluator`<br>`UHGDiscSentenceEvaluator`<br>`UHGGenerativeEvaluator`<br>`UHGSelectiveEvaluator` | [src/eval_suite/benchs/uhgeval](src/eval_suite/benchs/uhgeval)     |
 
 ## Learn More
 
@@ -162,8 +158,6 @@ To facilitate evaluation, we have developed a user-friendly evaluation framework
 <details><summary>Click me to show all TODOs</summary>
 
 - [ ] feat: vLLM offline inference benchmarking
-- [ ] build: packaging
 - [ ] feat(benchs): add TruthfulQA benchmark
-- [ ] other: promotion
-
+- [ ] ci: auto release to PyPI
 </details>

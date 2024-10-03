@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
 
-from eval.llms.base_llm import BaseLLM
+from eval_suite.llms.base_llm import BaseLLM
 
 
 class TestBaseLLM(unittest.TestCase):

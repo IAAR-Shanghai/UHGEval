@@ -1,6 +1,6 @@
 import unittest
 
-from eval.metrics import bert_score, bleu_4, keyword_precision, rouge_l
+from eval_suite.metrics import bert_score, bleu_4, keyword_precision, rouge_l
 
 
 class TestEvaluationFunctions(unittest.TestCase):

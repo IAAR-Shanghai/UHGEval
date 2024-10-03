@@ -1,6 +1,6 @@
 import unittest
 
-from eval.benchs.base_dataset import DummyDataset
+from eval_suite.benchs.base_dataset import DummyDataset
 
 
 class TestDummyDataset(unittest.TestCase):

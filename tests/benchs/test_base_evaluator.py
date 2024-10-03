@@ -2,8 +2,8 @@ import os
 import unittest
 from unittest.mock import MagicMock
 
-from eval.benchs.base_evaluator import DummyEvaluator
-from eval.llms.base_llm import BaseLLM
+from eval_suite.benchs.base_evaluator import DummyEvaluator
+from eval_suite.llms.base_llm import BaseLLM
 
 
 class TestDummyEvaluator(unittest.TestCase):

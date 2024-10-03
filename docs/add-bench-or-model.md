@@ -2,7 +2,7 @@
 
 ## Adding a New Benchmark
 
-You can refer to the structure of the `eval/benchs/exampleqa` folder, which serves as a minimal benchmark example. Additionally, you might want to check the `eval/benchs/base_dataset.py` and `eval/benchs/base_evaluator.py` files, as they provide the base classes for benchmarks.
+You can refer to the structure of the `src/eval_suite/benchs/exampleqa` folder, which serves as a minimal benchmark example. Additionally, you might want to check the `src/eval_suite/benchs/base_dataset.py` and `src/eval_suite/benchs/base_evaluator.py` files, as they provide the base classes for benchmarks.
 
 1. **Creating a Benchmark Folder**
    - Create a new folder under the `benchs` directory.
@@ -33,7 +33,7 @@ You can refer to the structure of the `eval/benchs/exampleqa` folder, which serv
 
 ## Adding a New Model Loader
 
-You can refer to the `eval/llms/huggingface.py` and `eval/llms/openai_api.py` files as examples for loading LLMs.
+You can refer to the `src/eval_suite/llms/huggingface.py` and `src/eval_suite/llms/openai_api.py` files as examples for loading LLMs.
 
 1. **Language Model Loader**
    - Create a new file under the `llms` directory. 

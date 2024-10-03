@@ -1,0 +1,58 @@
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[project]
+name = "eval_suite"
+dependencies = [
+    # Common
+    "torch",
+    "tqdm",
+    "ipykernel",
+
+    # OpenAI API
+    "openai",
+    "tenacity",
+
+    # Hugging Face Transformers
+    "transformers",
+    "accelerate",
+    "sentencepiece",
+
+    # Metrics
+    "nltk",
+    "rouge_score",
+    "text2vec",
+    "absl-py",
+
+    # Formatting
+    "black",
+    "isort",
+]
+authors = [{ name = "Shichao Song", email = "songshichao517@gmail.com" }]
+description = "User-friendly evaluation framework: Eval Suite & Benchmarks: UHGEval, HaluEval, HalluQA, etc."
+license = { file = "LICENSE" }
+keywords = [
+    "UHGEval",
+    "Chinese",
+    "hallucination",
+    "evaluation",
+    "llm",
+    "eval_suite",
+]
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+]
+dynamic = ["readme", "version"]
+
+[project.urls]
+Repository = "https://github.com/IAAR-Shanghai/UHGEval"
+
+[project.scripts]
+eval_suite = "eval_suite.cli:main"
+
+[tool.hatch.version]
+source = "vcs"

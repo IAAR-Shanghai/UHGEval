@@ -1,5 +1,6 @@
 /.vscode/
 /output/
+/dist/
 
 __pycache__/
 
