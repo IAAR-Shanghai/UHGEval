@@ -31,7 +31,7 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Test with unittest
       run: |
-        python -m unittest discover -s tests/ -p 'test*.py' -v
+        PYTHONPATH=src python -m unittest discover -s tests/ -p 'test*.py' -v
     - name: Test linting with black
       run: |
         black . --check

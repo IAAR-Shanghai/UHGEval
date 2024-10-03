@@ -9,7 +9,7 @@ A base evaluator and dataset under `benchs` provide default evaluation logic and
 ## Structure
 
 ```bash
-eval
+src/eval_suite/
 ├── __init__.py
 ├── cli.py                              # Command line interface
 ├── logging.py                          # Global logging configuration

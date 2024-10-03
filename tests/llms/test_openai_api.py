@@ -1,6 +1,6 @@
 import unittest
 
-from eval.llms.openai_api import OpenAIAPI
+from eval_suite.llms.openai_api import OpenAIAPI
 
 
 class TestOpenAIAPI(unittest.TestCase):

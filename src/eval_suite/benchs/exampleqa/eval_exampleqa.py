@@ -1,6 +1,6 @@
 import os
 
-from eval.llms.base_llm import BaseLLM
+from ...llms.base_llm import BaseLLM
 
 from ..base_evaluator import BaseEvaluator
 from .dataset import ExampleQADataset

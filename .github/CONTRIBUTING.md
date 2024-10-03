@@ -6,7 +6,7 @@ We appreciate your interest in contributing. To ensure a smooth collaboration, p
 > Please ensure that your code passes all tests and `black` code formatting before opening a pull request.
 > You can run the following commands to check your code:
 > ```bash
-> python -m unittest discover -s tests/ -p 'test*.py' -v
+> PYTHONPATH=src python -m unittest discover -s tests/ -p 'test*.py' -v
 > black . --check
 > ```
 
