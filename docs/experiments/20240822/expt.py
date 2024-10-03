@@ -1,10 +1,10 @@
-from eval.benchs import (
+from eval_suite.benchs import (
     UHGDiscKeywordEvaluator,
     UHGDiscSentenceEvaluator,
     UHGGenerativeEvaluator,
     UHGSelectiveEvaluator,
 )
-from eval.llms import OpenAIAPI
+from eval_suite.llms import OpenAIAPI
 
 glm = OpenAIAPI(
     model_name="THUDM/glm-4-9b-chat",

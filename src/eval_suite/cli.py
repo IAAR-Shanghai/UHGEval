@@ -51,7 +51,7 @@ def parse_args():
 # fmt: on
 
 
-if __name__ == "__main__":
+def main():
     args = parse_args()
     logger.info(f"Start the CLI with args: {args}")
 
@@ -80,3 +80,7 @@ if __name__ == "__main__":
     elif args.operation_name == "list":
         print("All evaluators:")
         pprint(all_evaluators)
+
+
+if __name__ == "__main__":
+    main()
