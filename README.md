@@ -159,5 +159,4 @@ To facilitate evaluation, we have developed a user-friendly evaluation framework
 
 - [ ] feat: vLLM offline inference benchmarking
 - [ ] feat(benchs): add TruthfulQA benchmark
-- [ ] ci: auto release to PyPI
 </details>
