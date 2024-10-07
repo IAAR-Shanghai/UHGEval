@@ -59,3 +59,6 @@ eval_suite = "eval_suite.cli:main"
 
 [tool.hatch.version]
 source = "vcs"
+
+[tool.hatch.build.targets.sdist]
+exclude = [".github", "/docs", "/page", "demo.ipynb"]
