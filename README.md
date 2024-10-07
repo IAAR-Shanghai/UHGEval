@@ -23,6 +23,9 @@
     <a href="https://github.com/IAAR-Shanghai/UHGEval-dataset">
         <img alt="Static Badge" src="https://img.shields.io/badge/GitHub-Dataset_Creation-blue?logo=github">
     </a>
+    <a href="https://badge.fury.io/py/eval-suite">
+        <img src="https://badge.fury.io/py/eval-suite.svg" alt="PyPI version">
+    </a>
     <a href="https://opensource.org/license/apache-2-0/">
         <img alt="Apache 2.0 License" src="https://img.shields.io/badge/Apache_2.0-License-green.svg?logo=apache">
     </a>
