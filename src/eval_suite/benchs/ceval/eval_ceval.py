@@ -66,7 +66,7 @@ class CEvalEvaluator(BaseEvaluator):
         # ─── Load Examples For Few-shot Learning ──────────────────────
 
         if num_shots > 0:
-            ds = CEvalDataset(self.disciplines, split="dev")
+            ds = CEvalDataset(self.disciplines, split=self.split)
             self.discipline_examples = ds.load_as_dict_of_discipline(num_shots)
         else:
             self.discipline_examples = {}
