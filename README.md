@@ -163,3 +163,9 @@ To facilitate evaluation, we have developed a user-friendly evaluation framework
 - [ ] feat: vLLM offline inference benchmarking
 - [ ] feat(benchs): add TruthfulQA benchmark
 </details>
+
+<!--
+
+[![Powered by DartNode](https://dartnode.com/branding/DN-Open-Source-sm.png)](https://dartnode.com "Powered by DartNode - Free VPS for Open Source")
+
+-->
